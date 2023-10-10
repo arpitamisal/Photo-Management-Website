@@ -1,0 +1,2965 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style id="ace-autumn">undefined
+/*# sourceURL=ace/css/ace-autumn */</style><style id="error_marker.css">
+    .error_widget_wrapper {
+        background: inherit;
+        color: inherit;
+        border:none
+    }
+    .error_widget {
+        border-top: solid 2px;
+        border-bottom: solid 2px;
+        margin: 5px 0;
+        padding: 10px 40px;
+        white-space: pre-wrap;
+    }
+    .error_widget.ace_error, .error_widget_arrow.ace_error{
+        border-color: #ff5a5a
+    }
+    .error_widget.ace_warning, .error_widget_arrow.ace_warning{
+        border-color: #F1D817
+    }
+    .error_widget.ace_info, .error_widget_arrow.ace_info{
+        border-color: #5a5a5a
+    }
+    .error_widget.ace_ok, .error_widget_arrow.ace_ok{
+        border-color: #5aaa5a
+    }
+    .error_widget_arrow {
+        position: absolute;
+        border: solid 5px;
+        border-top-color: transparent!important;
+        border-right-color: transparent!important;
+        border-left-color: transparent!important;
+        top: -5px;
+    }
+
+/*# sourceURL=ace/css/error_marker.css */</style><style id="ace-tm">.ace-tm .ace_gutter {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.ace-tm .ace_print-margin {
+  width: 1px;
+  background: #e8e8e8;
+}
+
+.ace-tm .ace_fold {
+    background-color: #6B72E6;
+}
+
+.ace-tm {
+  background-color: #FFFFFF;
+  color: black;
+}
+
+.ace-tm .ace_cursor {
+  color: black;
+}
+        
+.ace-tm .ace_invisible {
+  color: rgb(191, 191, 191);
+}
+
+.ace-tm .ace_storage,
+.ace-tm .ace_keyword {
+  color: blue;
+}
+
+.ace-tm .ace_constant {
+  color: rgb(197, 6, 11);
+}
+
+.ace-tm .ace_constant.ace_buildin {
+  color: rgb(88, 72, 246);
+}
+
+.ace-tm .ace_constant.ace_language {
+  color: rgb(88, 92, 246);
+}
+
+.ace-tm .ace_constant.ace_library {
+  color: rgb(6, 150, 14);
+}
+
+.ace-tm .ace_invalid {
+  background-color: rgba(255, 0, 0, 0.1);
+  color: red;
+}
+
+.ace-tm .ace_support.ace_function {
+  color: rgb(60, 76, 114);
+}
+
+.ace-tm .ace_support.ace_constant {
+  color: rgb(6, 150, 14);
+}
+
+.ace-tm .ace_support.ace_type,
+.ace-tm .ace_support.ace_class {
+  color: rgb(109, 121, 222);
+}
+
+.ace-tm .ace_keyword.ace_operator {
+  color: rgb(104, 118, 135);
+}
+
+.ace-tm .ace_string {
+  color: rgb(3, 106, 7);
+}
+
+.ace-tm .ace_comment {
+  color: rgb(76, 136, 107);
+}
+
+.ace-tm .ace_comment.ace_doc {
+  color: rgb(0, 102, 255);
+}
+
+.ace-tm .ace_comment.ace_doc.ace_tag {
+  color: rgb(128, 159, 191);
+}
+
+.ace-tm .ace_constant.ace_numeric {
+  color: rgb(0, 0, 205);
+}
+
+.ace-tm .ace_variable {
+  color: rgb(49, 132, 149);
+}
+
+.ace-tm .ace_xml-pe {
+  color: rgb(104, 104, 91);
+}
+
+.ace-tm .ace_entity.ace_name.ace_function {
+  color: #0000A2;
+}
+
+
+.ace-tm .ace_heading {
+  color: rgb(12, 7, 255);
+}
+
+.ace-tm .ace_list {
+  color:rgb(185, 6, 144);
+}
+
+.ace-tm .ace_meta.ace_tag {
+  color:rgb(0, 22, 142);
+}
+
+.ace-tm .ace_string.ace_regex {
+  color: rgb(255, 0, 0)
+}
+
+.ace-tm .ace_marker-layer .ace_selection {
+  background: rgb(181, 213, 255);
+}
+.ace-tm.ace_multiselect .ace_selection.ace_start {
+  box-shadow: 0 0 3px 0px white;
+}
+.ace-tm .ace_marker-layer .ace_step {
+  background: rgb(252, 255, 0);
+}
+
+.ace-tm .ace_marker-layer .ace_stack {
+  background: rgb(164, 229, 101);
+}
+
+.ace-tm .ace_marker-layer .ace_bracket {
+  margin: -1px 0 0 -1px;
+  border: 1px solid rgb(192, 192, 192);
+}
+
+.ace-tm .ace_marker-layer .ace_active-line {
+  background: rgba(0, 0, 0, 0.07);
+}
+
+.ace-tm .ace_gutter-active-line {
+    background-color : #dcdcdc;
+}
+
+.ace-tm .ace_marker-layer .ace_selected-word {
+  background: rgb(250, 250, 255);
+  border: 1px solid rgb(200, 200, 250);
+}
+
+.ace-tm .ace_indent-guide {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAE0lEQVQImWP4////f4bLly//BwAmVgd1/w11/gAAAABJRU5ErkJggg==") right repeat-y;
+}
+
+.ace-tm .ace_indent-guide-active {
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAZSURBVHjaYvj///9/hivKyv8BAAAA//8DACLqBhbvk+/eAAAAAElFTkSuQmCC") right repeat-y;
+}
+
+/*# sourceURL=ace/css/ace-tm */</style><style id="ace_editor.css">/*
+styles = []
+for (var i = 1; i < 16; i++) {
+    styles.push(".ace_br" + i + "{" + (
+        ["top-left", "top-right", "bottom-right", "bottom-left"]
+    ).map(function(x, j) {
+        return i & (1<<j) ? "border-" + x + "-radius: 3px;" : "" 
+    }).filter(Boolean).join(" ") + "}")
+}
+styles.join("\n")
+*/
+.ace_br1 {border-top-left-radius    : 3px;}
+.ace_br2 {border-top-right-radius   : 3px;}
+.ace_br3 {border-top-left-radius    : 3px; border-top-right-radius:    3px;}
+.ace_br4 {border-bottom-right-radius: 3px;}
+.ace_br5 {border-top-left-radius    : 3px; border-bottom-right-radius: 3px;}
+.ace_br6 {border-top-right-radius   : 3px; border-bottom-right-radius: 3px;}
+.ace_br7 {border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px;}
+.ace_br8 {border-bottom-left-radius : 3px;}
+.ace_br9 {border-top-left-radius    : 3px; border-bottom-left-radius:  3px;}
+.ace_br10{border-top-right-radius   : 3px; border-bottom-left-radius:  3px;}
+.ace_br11{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-left-radius:  3px;}
+.ace_br12{border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br13{border-top-left-radius    : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br14{border-top-right-radius   : 3px; border-bottom-right-radius: 3px; border-bottom-left-radius:  3px;}
+.ace_br15{border-top-left-radius    : 3px; border-top-right-radius:    3px; border-bottom-right-radius: 3px; border-bottom-left-radius: 3px;}
+
+
+.ace_editor {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+    direction: ltr;
+    text-align: left;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.ace_scroller {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    bottom: 0;
+    background-color: inherit;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    cursor: text;
+}
+
+.ace_content {
+    position: absolute;
+    box-sizing: border-box;
+    min-width: 100%;
+    contain: style size layout;
+    font-variant-ligatures: no-common-ligatures;
+}
+
+.ace_dragging .ace_scroller:before{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: '';
+    background: rgba(250, 250, 250, 0.01);
+    z-index: 1000;
+}
+.ace_dragging.ace_dark .ace_scroller:before{
+    background: rgba(0, 0, 0, 0.01);
+}
+
+.ace_gutter {
+    position: absolute;
+    overflow : hidden;
+    width: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    cursor: default;
+    z-index: 4;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    contain: style size layout;
+}
+
+.ace_gutter-active-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+}
+
+.ace_scroller.ace_scroll-left {
+    box-shadow: 17px 0 16px -16px rgba(0, 0, 0, 0.4) inset;
+}
+
+.ace_gutter-cell {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-left: 19px;
+    padding-right: 6px;
+    background-repeat: no-repeat;
+}
+
+.ace_gutter-cell.ace_error {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAABOFBMVEX/////////QRswFAb/Ui4wFAYwFAYwFAaWGAfDRymzOSH/PxswFAb/SiUwFAYwFAbUPRvjQiDllog5HhHdRybsTi3/Tyv9Tir+Syj/UC3////XurebMBIwFAb/RSHbPx/gUzfdwL3kzMivKBAwFAbbvbnhPx66NhowFAYwFAaZJg8wFAaxKBDZurf/RB6mMxb/SCMwFAYwFAbxQB3+RB4wFAb/Qhy4Oh+4QifbNRcwFAYwFAYwFAb/QRzdNhgwFAYwFAbav7v/Uy7oaE68MBK5LxLewr/r2NXewLswFAaxJw4wFAbkPRy2PyYwFAaxKhLm1tMwFAazPiQwFAaUGAb/QBrfOx3bvrv/VC/maE4wFAbRPBq6MRO8Qynew8Dp2tjfwb0wFAbx6eju5+by6uns4uH9/f36+vr/GkHjAAAAYnRSTlMAGt+64rnWu/bo8eAA4InH3+DwoN7j4eLi4xP99Nfg4+b+/u9B/eDs1MD1mO7+4PHg2MXa347g7vDizMLN4eG+Pv7i5evs/v79yu7S3/DV7/498Yv24eH+4ufQ3Ozu/v7+y13sRqwAAADLSURBVHjaZc/XDsFgGIBhtDrshlitmk2IrbHFqL2pvXf/+78DPokj7+Fz9qpU/9UXJIlhmPaTaQ6QPaz0mm+5gwkgovcV6GZzd5JtCQwgsxoHOvJO15kleRLAnMgHFIESUEPmawB9ngmelTtipwwfASilxOLyiV5UVUyVAfbG0cCPHig+GBkzAENHS0AstVF6bacZIOzgLmxsHbt2OecNgJC83JERmePUYq8ARGkJx6XtFsdddBQgZE2nPR6CICZhawjA4Fb/chv+399kfR+MMMDGOQAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: 2px center;
+}
+
+.ace_gutter-cell.ace_warning {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAmVBMVEX///8AAAD///8AAAAAAABPSzb/5sAAAAB/blH/73z/ulkAAAAAAAD85pkAAAAAAAACAgP/vGz/rkDerGbGrV7/pkQICAf////e0IsAAAD/oED/qTvhrnUAAAD/yHD/njcAAADuv2r/nz//oTj/p064oGf/zHAAAAA9Nir/tFIAAAD/tlTiuWf/tkIAAACynXEAAAAAAAAtIRW7zBpBAAAAM3RSTlMAABR1m7RXO8Ln31Z36zT+neXe5OzooRDfn+TZ4p3h2hTf4t3k3ucyrN1K5+Xaks52Sfs9CXgrAAAAjklEQVR42o3PbQ+CIBQFYEwboPhSYgoYunIqqLn6/z8uYdH8Vmdnu9vz4WwXgN/xTPRD2+sgOcZjsge/whXZgUaYYvT8QnuJaUrjrHUQreGczuEafQCO/SJTufTbroWsPgsllVhq3wJEk2jUSzX3CUEDJC84707djRc5MTAQxoLgupWRwW6UB5fS++NV8AbOZgnsC7BpEAAAAABJRU5ErkJggg==");
+    background-position: 2px center;
+}
+
+.ace_gutter-cell.ace_info {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAAB2k804AAAAPklEQVQY02NgIB68QuO3tiLznjAwpKTgNyDbMegwisCHZUETUZV0ZqOquBpXj2rtnpSJT1AEnnRmL2OgGgAAIKkRQap2htgAAAAASUVORK5CYII=");
+    background-position: 2px center;
+}
+.ace_dark .ace_gutter-cell.ace_info {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAJFBMVEUAAAChoaGAgIAqKiq+vr6tra1ZWVmUlJSbm5s8PDxubm56enrdgzg3AAAAAXRSTlMAQObYZgAAAClJREFUeNpjYMAPdsMYHegyJZFQBlsUlMFVCWUYKkAZMxZAGdxlDMQBAG+TBP4B6RyJAAAAAElFTkSuQmCC");
+}
+
+.ace_scrollbar {
+    contain: strict;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 6;
+}
+
+.ace_scrollbar-inner {
+    position: absolute;
+    cursor: text;
+    left: 0;
+    top: 0;
+}
+
+.ace_scrollbar-v{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    top: 0;
+}
+
+.ace_scrollbar-h {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    left: 0;
+}
+
+.ace_print-margin {
+    position: absolute;
+    height: 100%;
+}
+
+.ace_text-input {
+    position: absolute;
+    z-index: 0;
+    width: 0.5em;
+    height: 1em;
+    opacity: 0;
+    background: transparent;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    resize: none;
+    outline: none;
+    overflow: hidden;
+    font: inherit;
+    padding: 0 1px;
+    margin: 0 -1px;
+    contain: strict;
+    -ms-user-select: text;
+    -moz-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+    /*with `pre-line` chrome inserts &nbsp; instead of space*/
+    white-space: pre!important;
+}
+.ace_text-input.ace_composition {
+    background: transparent;
+    color: inherit;
+    z-index: 1000;
+    opacity: 1;
+}
+.ace_composition_placeholder { color: transparent }
+.ace_composition_marker { 
+    border-bottom: 1px solid;
+    position: absolute;
+    border-radius: 0;
+    margin-top: 1px;
+}
+
+[ace_nocontext=true] {
+    transform: none!important;
+    filter: none!important;
+    clip-path: none!important;
+    mask : none!important;
+    contain: none!important;
+    perspective: none!important;
+    mix-blend-mode: initial!important;
+    z-index: auto;
+}
+
+.ace_layer {
+    z-index: 1;
+    position: absolute;
+    overflow: hidden;
+    /* workaround for chrome bug https://github.com/ajaxorg/ace/issues/2312*/
+    word-wrap: normal;
+    white-space: pre;
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    /* setting pointer-events: auto; on node under the mouse, which changes
+        during scroll, will break mouse wheel scrolling in Safari */
+    pointer-events: none;
+}
+
+.ace_gutter-layer {
+    position: relative;
+    width: auto;
+    text-align: right;
+    pointer-events: auto;
+    height: 1000000px;
+    contain: style size layout;
+}
+
+.ace_text-layer {
+    font: inherit !important;
+    position: absolute;
+    height: 1000000px;
+    width: 1000000px;
+    contain: style size layout;
+}
+
+.ace_text-layer > .ace_line, .ace_text-layer > .ace_line_group {
+    contain: style size layout;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.ace_hidpi .ace_text-layer,
+.ace_hidpi .ace_gutter-layer,
+.ace_hidpi .ace_content,
+.ace_hidpi .ace_gutter {
+    contain: strict;
+    will-change: transform;
+}
+.ace_hidpi .ace_text-layer > .ace_line, 
+.ace_hidpi .ace_text-layer > .ace_line_group {
+    contain: strict;
+}
+
+.ace_cjk {
+    display: inline-block;
+    text-align: center;
+}
+
+.ace_cursor-layer {
+    z-index: 4;
+}
+
+.ace_cursor {
+    z-index: 4;
+    position: absolute;
+    box-sizing: border-box;
+    border-left: 2px solid;
+    /* workaround for smooth cursor repaintng whole screen in chrome */
+    transform: translatez(0);
+}
+
+.ace_multiselect .ace_cursor {
+    border-left-width: 1px;
+}
+
+.ace_slim-cursors .ace_cursor {
+    border-left-width: 1px;
+}
+
+.ace_overwrite-cursors .ace_cursor {
+    border-left-width: 0;
+    border-bottom: 1px solid;
+}
+
+.ace_hidden-cursors .ace_cursor {
+    opacity: 0.2;
+}
+
+.ace_hasPlaceholder .ace_hidden-cursors .ace_cursor {
+    opacity: 0;
+}
+
+.ace_smooth-blinking .ace_cursor {
+    transition: opacity 0.18s;
+}
+
+.ace_animate-blinking .ace_cursor {
+    animation-duration: 1000ms;
+    animation-timing-function: step-end;
+    animation-name: blink-ace-animate;
+    animation-iteration-count: infinite;
+}
+
+.ace_animate-blinking.ace_smooth-blinking .ace_cursor {
+    animation-duration: 1000ms;
+    animation-timing-function: ease-in-out;
+    animation-name: blink-ace-animate-smooth;
+}
+    
+@keyframes blink-ace-animate {
+    from, to { opacity: 1; }
+    60% { opacity: 0; }
+}
+
+@keyframes blink-ace-animate-smooth {
+    from, to { opacity: 1; }
+    45% { opacity: 1; }
+    60% { opacity: 0; }
+    85% { opacity: 0; }
+}
+
+.ace_marker-layer .ace_step, .ace_marker-layer .ace_stack {
+    position: absolute;
+    z-index: 3;
+}
+
+.ace_marker-layer .ace_selection {
+    position: absolute;
+    z-index: 5;
+}
+
+.ace_marker-layer .ace_bracket {
+    position: absolute;
+    z-index: 6;
+}
+
+.ace_marker-layer .ace_error_bracket {
+    position: absolute;
+    border-bottom: 1px solid #DE5555;
+    border-radius: 0;
+}
+
+.ace_marker-layer .ace_active-line {
+    position: absolute;
+    z-index: 2;
+}
+
+.ace_marker-layer .ace_selected-word {
+    position: absolute;
+    z-index: 4;
+    box-sizing: border-box;
+}
+
+.ace_line .ace_fold {
+    box-sizing: border-box;
+
+    display: inline-block;
+    height: 11px;
+    margin-top: -2px;
+    vertical-align: middle;
+
+    background-image:
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACJJREFUeNpi+P//fxgTAwPDBxDxD078RSX+YeEyDFMCIMAAI3INmXiwf2YAAAAASUVORK5CYII=");
+    background-repeat: no-repeat, repeat-x;
+    background-position: center center, top left;
+    color: transparent;
+
+    border: 1px solid black;
+    border-radius: 2px;
+
+    cursor: pointer;
+    pointer-events: auto;
+}
+
+.ace_dark .ace_fold {
+}
+
+.ace_fold:hover{
+    background-image:
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAJCAYAAADU6McMAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAJpJREFUeNpi/P//PwOlgAXGYGRklAVSokD8GmjwY1wasKljQpYACtpCFeADcHVQfQyMQAwzwAZI3wJKvCLkfKBaMSClBlR7BOQikCFGQEErIH0VqkabiGCAqwUadAzZJRxQr/0gwiXIal8zQQPnNVTgJ1TdawL0T5gBIP1MUJNhBv2HKoQHHjqNrA4WO4zY0glyNKLT2KIfIMAAQsdgGiXvgnYAAAAASUVORK5CYII="),
+        url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAA3CAYAAADNNiA5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeNpi+P//fz4TAwPDZxDxD5X4i5fLMEwJgAADAEPVDbjNw87ZAAAAAElFTkSuQmCC");
+}
+
+.ace_tooltip {
+    background-color: #FFF;
+    background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.1));
+    border: 1px solid gray;
+    border-radius: 1px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    color: black;
+    max-width: 100%;
+    padding: 3px 4px;
+    position: fixed;
+    z-index: 999999;
+    box-sizing: border-box;
+    cursor: default;
+    white-space: pre;
+    word-wrap: break-word;
+    line-height: normal;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: normal;
+    pointer-events: none;
+}
+
+.ace_folding-enabled > .ace_gutter-cell {
+    padding-right: 13px;
+}
+
+.ace_fold-widget {
+    box-sizing: border-box;
+
+    margin: 0 -12px 0 1px;
+    display: none;
+    width: 11px;
+    vertical-align: top;
+
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42mWKsQ0AMAzC8ixLlrzQjzmBiEjp0A6WwBCSPgKAXoLkqSot7nN3yMwR7pZ32NzpKkVoDBUxKAAAAABJRU5ErkJggg==");
+    background-repeat: no-repeat;
+    background-position: center;
+
+    border-radius: 3px;
+    
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.ace_folding-enabled .ace_fold-widget {
+    display: inline-block;   
+}
+
+.ace_fold-widget.ace_end {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAANElEQVR42m3HwQkAMAhD0YzsRchFKI7sAikeWkrxwScEB0nh5e7KTPWimZki4tYfVbX+MNl4pyZXejUO1QAAAABJRU5ErkJggg==");
+}
+
+.ace_fold-widget.ace_closed {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAGCAYAAAAG5SQMAAAAOUlEQVR42jXKwQkAMAgDwKwqKD4EwQ26sSOkVWjgIIHAzPiCgaqiqnJHZnKICBERHN194O5b9vbLuAVRL+l0YWnZAAAAAElFTkSuQmCCXA==");
+}
+
+.ace_fold-widget:hover {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);
+}
+
+.ace_fold-widget:active {
+    border: 1px solid rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+/**
+ * Dark version for fold widgets
+ */
+.ace_dark .ace_fold-widget {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHklEQVQIW2P4//8/AzoGEQ7oGCaLLAhWiSwB146BAQCSTPYocqT0AAAAAElFTkSuQmCC");
+}
+.ace_dark .ace_fold-widget.ace_end {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAH0lEQVQIW2P4//8/AxQ7wNjIAjDMgC4AxjCVKBirIAAF0kz2rlhxpAAAAABJRU5ErkJggg==");
+}
+.ace_dark .ace_fold-widget.ace_closed {
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAAFCAYAAACAcVaiAAAAHElEQVQIW2P4//+/AxAzgDADlOOAznHAKgPWAwARji8UIDTfQQAAAABJRU5ErkJggg==");
+}
+.ace_dark .ace_fold-widget:hover {
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.ace_dark .ace_fold-widget:active {
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+
+.ace_inline_button {
+    border: 1px solid lightgray;
+    display: inline-block;
+    margin: -1px 8px;
+    padding: 0 5px;
+    pointer-events: auto;
+    cursor: pointer;
+}
+.ace_inline_button:hover {
+    border-color: gray;
+    background: rgba(200,200,200,0.2);
+    display: inline-block;
+    pointer-events: auto;
+}
+
+.ace_fold-widget.ace_invalid {
+    background-color: #FFB4B4;
+    border-color: #DE5555;
+}
+
+.ace_fade-fold-widgets .ace_fold-widget {
+    transition: opacity 0.4s ease 0.05s;
+    opacity: 0;
+}
+
+.ace_fade-fold-widgets:hover .ace_fold-widget {
+    transition: opacity 0.05s ease 0.05s;
+    opacity:1;
+}
+
+.ace_underline {
+    text-decoration: underline;
+}
+
+.ace_bold {
+    font-weight: bold;
+}
+
+.ace_nobold .ace_bold {
+    font-weight: normal;
+}
+
+.ace_italic {
+    font-style: italic;
+}
+
+
+.ace_error-marker {
+    background-color: rgba(255, 0, 0,0.2);
+    position: absolute;
+    z-index: 9;
+}
+
+.ace_highlight-marker {
+    background-color: rgba(255, 255, 0,0.2);
+    position: absolute;
+    z-index: 8;
+}
+
+.ace_mobile-menu {
+    position: absolute;
+    line-height: 1.5;
+    border-radius: 4px;
+    -ms-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    background: white;
+    box-shadow: 1px 3px 2px grey;
+    border: 1px solid #dcdcdc;
+    color: black;
+}
+.ace_dark > .ace_mobile-menu {
+    background: #333;
+    color: #ccc;
+    box-shadow: 1px 3px 2px grey;
+    border: 1px solid #444;
+
+}
+.ace_mobile-button {
+    padding: 2px;
+    cursor: pointer;
+    overflow: hidden;
+}
+.ace_mobile-button:hover {
+    background-color: #eee;
+    opacity:1;
+}
+.ace_mobile-button:active {
+    background-color: #ddd;
+}
+
+.ace_placeholder {
+    font-family: arial;
+    transform: scale(0.9);
+    transform-origin: left;
+    white-space: pre;
+    opacity: 0.7;
+    margin: 0 10px;
+}
+/*# sourceURL=ace/css/ace_editor.css */</style><style id="ace_scrollbar.css">.ace_editor>.ace_sb-v div, .ace_editor>.ace_sb-h div{
+  position: absolute;
+  background: rgba(128, 128, 128, 0.6);
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  z-index: 8;
+}
+.ace_editor>.ace_sb-v, .ace_editor>.ace_sb-h {
+  position: absolute;
+  z-index: 6;
+  background: none;
+  overflow: hidden!important;
+}
+.ace_editor>.ace_sb-v {
+  z-index: 6;
+  right: 0;
+  top: 0;
+  width: 12px;
+}
+.ace_editor>.ace_sb-v div {
+  z-index: 8;
+  right: 0;
+  width: 100%;
+}
+.ace_editor>.ace_sb-h {
+  bottom: 0;
+  left: 0;
+  height: 12px;
+}
+.ace_editor>.ace_sb-h div {
+  bottom: 0;
+  height: 100%;
+}
+.ace_editor>.ace_sb_grabbed {
+  z-index: 8;
+  background: #000;
+}
+/*# sourceURL=ace/css/ace_scrollbar.css */</style>
+<script type="text/javascript" async="" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/ecommerce.js"></script><script async="" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/analytics.js"></script><script src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/8ee4ea609a6346c4cf34c2b621ac79ba.js"></script>
+
+        <meta charset="utf-8">
+        <meta content="IE=edge" http-equiv="X-UA-Compatible">
+        <title>Section 2.7 - CSC 340: Programming Methodology</title>
+        <meta content="" name="description">
+        <meta content="width=device-width, initial-scale=1" name="viewport">
+        <link href="https://learn.zybooks.com/assets/favicon.ico" integrity="" rel="icon">
+
+        
+<meta name="zybooks-web/config/environment" content="%7B%22environment%22%3A%22production%22%2C%22locationType%22%3A%22auto%22%2C%22modulePrefix%22%3A%22zybooks-web%22%2C%22rootURL%22%3A%22%2F%22%2C%22EmberENV%22%3A%7B%22FEATURES%22%3A%7B%7D%2C%22_APPLICATION_TEMPLATE_WRAPPER%22%3Afalse%2C%22_DEFAULT_ASYNC_OBSERVERS%22%3Atrue%2C%22_JQUERY_INTEGRATION%22%3Afalse%2C%22_TEMPLATE_ONLY_GLIMMER_COMPONENTS%22%3Atrue%2C%22EXTEND_PROTOTYPES%22%3Atrue%7D%2C%22APP%22%3A%7B%22ACCESS_DEV%22%3Afalse%2C%22ADMIN_URL%22%3A%22https%3A%2F%2Fadmin.zybooks.com%2F%22%2C%22ANALYTICS_URL%22%3A%22https%3A%2F%2Fanalytics.zybooks.com%2F%22%2C%22API_HOST%22%3A%22https%3A%2F%2Fzyserver.zybooks.com%2Fv1%2F%22%2C%22APP_URL%22%3A%22https%3A%2F%2Flearn.zybooks.com%22%2C%22AUTHORS_ONLY%22%3Afalse%2C%22BUILDKEY%22%3A%2230a616a4-c775-a504-bb03-ead5103e4183%22%2C%22CLOUDSEARCH_ENDPOINT%22%3A%22https%3A%2F%2Foqsgv0xbv7.execute-api.us-west-2.amazonaws.com%2Fproduction%22%2C%22CODINGROOMS_URL%22%3A%22https%3A%2F%2Fapp.codingrooms.com%22%2C%22DISABLE_EVENTS%22%3Afalse%2C%22EVENTS_API_HOST%22%3A%22https%3A%2F%2Fzyevents.zybooks.com%2F%22%2C%22EVENTS_API_TARGET%22%3A%22v1%2Fstream%22%2C%22ROUTE_IF_ALREADY_AUTHENTICATED%22%3A%22library%22%2C%22SALES_URL%22%3A%22https%3A%2F%2Fsales.zybooks.com%2F%22%2C%22SESSION_KEY_SUFFIX%22%3A%225%22%2C%22TERMINAL_SOCKET_URL%22%3A%22wss%3A%2F%2Fzyterminal.zybooks.com%2Fws%22%2C%22WEBINAR_URL%22%3A%22https%3A%2F%2Fzoom.us%2Fwebinar%2Fregister%2FWN_vuUaO8C6QLy_yzxW4ixU3Q%22%2C%22WHAT_IS_ZYBOOK_VIDEO_URL%22%3A%22https%3A%2F%2Fvimeo.com%2F285133146%2F48bc90afb5%22%2C%22ZYBOOKS_URL%22%3A%22https%3A%2F%2Flearn.zybooks.com%2F%22%2C%22ZYSERVER2_API_HOST%22%3A%22https%3A%2F%2Fzyserver2.zybooks.com%2Fv1%2F%22%2C%22ITLABS_API_HOST%22%3A%22https%3A%2F%2Fitlabs-server.zybooks.com%2Fv1%2F%22%2C%22ZYSERVER2_DR_API_HOST%22%3A%22https%3A%2F%2Fzyserver2.dr.zybooks.com%2Fv1%2F%22%2C%22ZYEXAM_SERVER_API_HOST%22%3A%22https%3A%2F%2Fzyexam-server.zybooks.com%2Fv1%2F%22%2C%22JUPYTERHUB_HOST%22%3A%22https%3A%2F%2Fjupyterhub.zybooks.com%2F%22%7D%2C%22contentSecurityPolicy%22%3A%7B%22connect-src%22%3A%22'self'%20www.google-analytics.com%20https%3A%2F%2Ffonts.googleapis.com%20https%3A%2F%2Fzyserver.zybooks.com%2Fv1%2F%22%2C%22default-src%22%3A%22'none'%22%2C%22font-src%22%3A%22'self'%20fonts.gstatic.com%20%22%2C%22img-src%22%3A%22'self'%20http%3A%2F%2Fupload.wikimedia.org.com%2F%22%2C%22media-src%22%3A%22'self'%22%2C%22script-src%22%3A%22'self'%20'unsafe-inline'%20'unsafe-eval'%20www.google-analytics.com%22%2C%22style-src%22%3A%22'self'%20'unsafe-inline'%20https%3A%2F%2Ffonts.googleapis.com%22%2C%22frame-ancestors%22%3A%22*%22%7D%2C%22metricsAdapters%22%3A%5B%7B%22name%22%3A%22GoogleAnalytics%22%2C%22environments%22%3A%5B%22development%22%2C%22staging%22%2C%22production%22%5D%2C%22config%22%3A%7B%22id%22%3A%22UA-43181201-3%22%2C%22debug%22%3Afalse%2C%22trace%22%3Afalse%2C%22sendHitTask%22%3Atrue%2C%22require%22%3A%5B%22ecommerce%22%5D%7D%7D%5D%2C%22moment%22%3A%7B%22includeTimezone%22%3A%22subset%22%7D%2C%22stripe%22%3A%7B%22publishableKey%22%3A%22pk_live_6WfpM1NZl9sSnKivV9WvGD2H%22%7D%2C%22ember-froala-editor%22%3A%7B%22key%22%3A%22mPD4tD2F2B2D1H1A1D3lFa1f1PVWEd2Fa1XHTHh1THMMb1NCg1tA2B2C2E2C5F1A1F1I4C10%3D%3D%22%7D%2C%22exportApplicationGlobal%22%3Afalse%2C%22ember-websockets%22%3A%7B%22socketIO%22%3Afalse%7D%2C%22resourceHost%22%3A%22https%3A%2F%2Fzytools.zybooks.com%2FzyBooks2%2F%22%2C%22staticResourceHost%22%3A%22https%3A%2F%2Fstatic-resources.zybooks.com%2F%22%2C%22imageHost%22%3A%22https%3A%2F%2Fzytools.zybooks.com%2FzyAuthor%2F%22%2C%22zydeHost%22%3A%22http%3A%2F%2Fzyde2.zyante.com%22%2C%22terminalSocketUrl%22%3A%22wss%3A%2F%2Fzyterminal.dev.kube.zybooks.com%2Fws%22%7D">
+
+        <link href="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/vendor-bf6a0a553d67d15905c84e95b507576e.css" integrity="" rel="stylesheet">
+<link rel="stylesheet" href="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/chunk.995.eb79df0e9ab2717e37b7.css" integrity="sha256-wRavIaoPrNdpNEmuJGgfqbo8pwu++ycAUNQMCCjwn4s= sha512-sHeUXOHKhOY9n1wMvoYNDnQLRKoYNmDYK33GlCzmkgAP6GM4j6lNNB6znMqI4JXSGsVOMob9XdpNQzEHemzQhA==">
+        <link href="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/zybooks-web-5755d0f84e9e58e213ad7acd58d2852c.css" integrity="" rel="stylesheet">
+        <link crossorigin="anonymous" href="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/css_002.css" integrity="" rel="stylesheet">
+        <link href="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/css.css" integrity="" rel="stylesheet">
+        <link href="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/basicLightbox.min-69bdb9cd40a5bbcb4587424b1c70f89b.css" integrity="" rel="stylesheet">
+
+        <script id="mathjax" integrity="" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/MathJax.js" type="text/javascript">
+        </script>
+        <script integrity="">
+            MathJax.Hub.Config({ menuSettings: { inTabOrder: false } });
+            MathJax.Hub.Queue([ "setRenderer", MathJax.Hub, "SVG" ]);
+        </script>
+
+        <script integrity="" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/vendor-1b3d89faf5902fd1e24ff91c1580d287.js"></script>
+<script src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/chunk.995.eb79df0e9ab2717e37b7.js" integrity="sha256-mop+2/JgExd+91Juobjv9VGkkhB1HictM0A6BAiZTrA= sha512-uwsTcg9M0DwVEZlzrzGWtedDp9qM4iOhrtM2uJ95pJ166dbxlp58+ra/W5TUVZ7CN2VJHLbd/Jk16CZzGDVP+Q=="></script>
+<script src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/chunk.143.a961d8d08db873c69098.js" integrity="sha256-U8+vtplDs/qo2rUCPVXWBWK7C0NvG+WY6Bq1KOFbfHs= sha512-qbAwtmXpqgLIXUbBfp/V+62WYz6dlJku3E192ufeIsQqoD4CxMR7PuIBZoX4pRH2HNvE4OO9F63DmgLdF6KjuA=="></script>
+        <script integrity="" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/zybooks-web-e8cbeb8826a1923e9ab3ddc1e90700ab.js"></script>
+        <script integrity="" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/ace.js"></script>
+        <script integrity="" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/string-diff-e0bbca1822d01af91ebb85faf6848c6b.js"></script>
+
+        
+    <style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888; display: contents}
+#MathJax_Message {position: fixed; left: 1px; bottom: 2px; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><script src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/mode-c_cpp.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://zytools.zybooks.com/zyBooks2/fingerprinted/aa7347b6-54f4-46e1-90cc-37d76d01945d/codeOutput/js/codeOutput.js" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/codeOutput.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://zytools.zybooks.com/zyBooks2/fingerprinted/aa7347b6-54f4-46e1-90cc-37d76d01945d/utilities/js/utilities.js" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/utilities.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://zytools.zybooks.com/zyBooks2/fingerprinted/aa7347b6-54f4-46e1-90cc-37d76d01945d/progressionTool/js/progressionTool.js" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/progressionTool.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://zytools.zybooks.com/zyBooks2/fingerprinted/32193a5b-06cc-4f66-93ee-a72c7340a266/segmentedControl/js/segmentedControl.js" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/segmentedControl.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://zytools.zybooks.com/zyBooks2/fingerprinted/17f5fa3d-c34d-4166-b35b-dc14f8b9e26b/zyFlowchartSDK/js/zyFlowchartSDK.js" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/zyFlowchartSDK.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://zytools.zybooks.com/zyBooks2/fingerprinted/706226ef-bde6-4fa9-bcd9-1b16468ff80f/restrictedEditor/js/restrictedEditor.js" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/restrictedEditor.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://zytools.zybooks.com/zyBooks2/fingerprinted/2c685665-3181-42c6-849e-b85476327a92/vendor/handlebars.1.3.0.min.js" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/handlebars.1.3.0.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://zytools.zybooks.com/zyBooks2/fingerprinted/2c685665-3181-42c6-849e-b85476327a92/vendor/spin.min.js" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/spin.min.js"></script><style type="text/css"></style><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://zytools.zybooks.com/zyBooks2/fingerprinted/2c685665-3181-42c6-849e-b85476327a92/vendor/raphael.min.js" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/raphael.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://zytools.zybooks.com/zyBooks2/fingerprinted/2c685665-3181-42c6-849e-b85476327a92/vendor/alea.min.js" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/alea.min.js"></script></head>
+    <body class="ember-application" style="overflow: auto;"><div id="MathJax_Message" style="display: none;"></div>
+        <script type="text/javascript" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/index.js"></script>
+
+        
+
+        <div id="ember-basic-dropdown-wormhole"></div>
+
+        <script integrity="" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/script.js"></script><iframe src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/frame.html" style="position: fixed; border: medium none; box-shadow: rgba(9, 20, 66, 0.25) 0px 20px 32px -8px; z-index: 9999; transition: left 1s ease 0s, bottom 1s ease 0s, right 1s ease 0s; height: 115px; width: 320px; left: -9999px; right: -9999px; bottom: calc(100% - 175px);" title="zyBooks Status"></iframe>
+    
+
+<header class="top-toolbar " role="none">
+    <div class="left-buttons">
+        <div class="zb-breadcrumbs ">
+        <button aria-disabled="false" aria-label="Menu" class="zb-button  grey    icon-button left        menu-button" aria-expanded="false" type="button">
+            <i class="zb-icon material-icons med grey  " role="img" aria-label="menu" aria-hidden="false">
+            menu
+<!----></i>
+
+<!----><!----></button>
+
+
+        <div class="logo">
+                <a id="ember3" class="ember-view" href="https://learn.zybooks.com/"><img alt="zyBooks" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/logo.svg" width="83px" height="22px"></a>
+        </div>
+
+            <ul class="bread-crumbs">
+<!---->                    <a id="ember14" class="ember-view no-underline" href="https://learn.zybooks.com/library">
+                        <li class="bread-crumb">My library</li>
+                    </a>
+                        <span aria-hidden="true" class="divider">&gt;</span>
+                    <a id="ember1022" class="ember-view active no-underline" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023">
+                        <li class="bread-crumb">CSC 340: Programming Methodology home</li>
+                    </a>
+                        <span aria-hidden="true" class="divider">&gt;</span>
+                    <a id="ember1023" class="ember-view active no-underline" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/7">
+                        <li class="bread-crumb">2.7: Character operations</li>
+                    </a>
+            </ul>
+</div>
+
+    </div>
+    <div class="right-buttons">
+<!----><!----><!---->            <a id="ember932" class="ember-view zb-button" href="https://learn.zybooks.com/catalog">
+                <i class="zb-icon material-icons med grey  " role="img" aria-label="zyBooks catalog">
+            library_books
+<!----></i>
+
+                <span aria-hidden="true" class="font-light ml-2 text-base">
+                    zyBooks catalog
+                </span>
+            </a>
+                <a class="no-underline zb-button help-button" href="http://support.zybooks.com/" rel="noopener noreferrer" target="_blank">
+            <i class="zb-icon material-icons med grey  " role="img" aria-label="Help/FAQ">
+            help
+<!----></i>
+
+                <span aria-hidden="true">Help/FAQ</span>
+        </a>
+                <div class="ember-basic-dropdown zb-menu">
+                  <div id="ember5" class="ember-view ember-basic-dropdown-trigger
+       ember-basic-dropdown-trigger--in-place
+      
+      
+       toolbar-menu-toggle" role="button" tabindex="0" data-ebd-id="ember4-trigger" aria-owns="ember-basic-dropdown-content-ember4" aria-controls="ember-basic-dropdown-content-ember4" aria-expanded="false" aria-label="Profile for Arpita Misa">
+    
+                    <i class="zb-icon material-icons med grey  " role="img" aria-label="account_circle" aria-hidden="true">
+            account_circle
+<!----></i>
+
+                    Arpita Misa
+                    <i class="zb-icon material-icons med grey  " role="img" aria-label="arrow_drop_down" aria-hidden="true">
+            arrow_drop_down
+<!----></i>
+
+                
+  </div>
+
+                  <div id="ember-basic-dropdown-content-ember4" class="ember-basic-dropdown-content-placeholder" style="display: none;"></div>
+
+            </div>
+
+    </div>
+</header>
+
+<!---->
+<!---->
+<div aria-label="zybook page" class="route-container zybook-chapter-section-page no-margin-left " role="main">
+<!---->
+    <nav id="ember9" class="zb-nav-menu ember-view hide-nav-menu"><ul class="level-1">
+            <li class="flex-row">
+                    <a id="ember895" class="ember-view flex-row  invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/content-explorer">
+                                <i class="zb-icon material-icons med grey   item-bullet" role="img" aria-label="search" aria-hidden="true">
+            search
+<!----></i>
+
+                                                    <span class="self-center">
+                            Search zyBook
+                        </span>
+                    </a>
+            </li>
+            <li class="flex-row">
+                    <button class="list-toggle invisible" type="button" data-ember-action="" data-ember-action-929="929">
+                        <div class="flex-row">
+                                    <i class="zb-icon material-icons med grey   item-bullet" role="img" aria-label="info" aria-hidden="true">
+            info
+<!----></i>
+
+                                                            <span class="self-center list-toggle-title">
+                                About this Material
+                            </span>
+                        </div>
+                    </button>
+            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-897="897">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">1)</span>
+                            <span class="list-toggle-title">
+                                Introduction to C++
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="true" class="list-toggle" type="button" data-ember-action="" data-ember-action-898="898">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">2)</span>
+                            <span class="list-toggle-title">
+                                Basic data types: char, bool, numeric data types, const, auto, and programming style
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_less" aria-hidden="true">
+            expand_less
+<!----></i>
+
+                    </div>
+                </button>
+
+                    <ul class="level-2">
+                            <li>
+                                <a id="ember1118" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/1">
+                                            <span class="item-bullet">2.1</span>
+                                    <span>
+                                        Identifiers
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1119" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/2">
+                                            <span class="item-bullet">2.2</span>
+                                    <span>
+                                        Variables and assignments (general)
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1120" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/3">
+                                            <span class="item-bullet">2.3</span>
+                                    <span>
+                                        Variables (int)
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1121" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/4">
+                                            <span class="item-bullet">2.4</span>
+                                    <span>
+                                        Arithmetic expressions (general)
+                                    </span>
+                                    <div class="section-labels">
+<!---->                                            <span class="nav-item-label-optional">Optional</span>
+<!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1122" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/5">
+                                            <span class="item-bullet">2.5</span>
+                                    <span>
+                                        Variable name scope
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1123" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/6">
+                                            <span class="item-bullet">2.6</span>
+                                    <span>
+                                        Characters
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1124" class="ember-view active invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/7">
+                                            <span class="item-bullet">2.7</span>
+                                    <span>
+                                        Character operations
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1125" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/8">
+                                            <span class="item-bullet">2.8</span>
+                                    <span>
+                                        Char library functions: ctype
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1126" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/9">
+                                            <span class="item-bullet">2.9</span>
+                                    <span>
+                                        Boolean data type
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1127" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/10">
+                                            <span class="item-bullet">2.10</span>
+                                    <span>
+                                        H.Y. Integer expressions vs. boolean expressions
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1128" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/11">
+                                            <span class="item-bullet">2.11</span>
+                                    <span>
+                                        Numeric data types
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1129" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/12">
+                                            <span class="item-bullet">2.12</span>
+                                    <span>
+                                        Arithmetic expressions (int)
+                                    </span>
+                                    <div class="section-labels">
+<!---->                                            <span class="nav-item-label-optional">Optional</span>
+<!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1130" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/13">
+                                            <span class="item-bullet">2.13</span>
+                                    <span>
+                                        Integer division and modulo
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1131" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/14">
+                                            <span class="item-bullet">2.14</span>
+                                    <span>
+                                        Integer overflow
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1132" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/15">
+                                            <span class="item-bullet">2.15</span>
+                                    <span>
+                                        Unsigned
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1133" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/16">
+                                            <span class="item-bullet">2.16</span>
+                                    <span>
+                                        Floating-point (double)
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1134" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/17">
+                                            <span class="item-bullet">2.17</span>
+                                    <span>
+                                        Scientific notation for floating-point literals
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1135" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/18">
+                                            <span class="item-bullet">2.18</span>
+                                    <span>
+                                        Floating-point comparison
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1136" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/19">
+                                            <span class="item-bullet">2.19</span>
+                                    <span>
+                                        Random numbers
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1137" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/20">
+                                            <span class="item-bullet">2.20</span>
+                                    <span>
+                                        Math functions
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1138" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/21">
+                                            <span class="item-bullet">2.21</span>
+                                    <span>
+                                        Constant variables
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1139" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/22">
+                                            <span class="item-bullet">2.22</span>
+                                    <span>
+                                        Auto (since C++11)
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1140" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/23">
+                                            <span class="item-bullet">2.23</span>
+                                    <span>
+                                        Type conversions
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1141" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/24">
+                                            <span class="item-bullet">2.24</span>
+                                    <span>
+                                        Namespaces
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1142" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/25">
+                                            <span class="item-bullet">2.25</span>
+                                    <span>
+                                        Debugging
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1143" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/26">
+                                            <span class="item-bullet">2.26</span>
+                                    <span>
+                                        Style guidelines
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1144" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/27">
+                                            <span class="item-bullet">2.27</span>
+                                    <span>
+                                        Developing programs incrementally
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1145" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/28">
+                                            <span class="item-bullet">2.28</span>
+                                    <span>
+                                        C++ example: Salary calculation with variables
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1146" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/29">
+                                            <span class="item-bullet">2.29</span>
+                                    <span>
+                                        C++ example: Married-couple names with variables
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1147" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/30">
+                                            <span class="item-bullet">2.30</span>
+                                    <span>
+                                        LAB: Leap year
+                                    </span>
+                                    <div class="section-labels">
+                                            <span class="nav-item-label-lab">Lab</span>
+<!---->                                            <span class="nav-item-label-hidden">Hidden</span>
+<!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1148" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/31">
+                                            <span class="item-bullet">2.31</span>
+                                    <span>
+                                        LAB: Expression for calories burned during workout
+                                    </span>
+                                    <div class="section-labels">
+                                            <span class="nav-item-label-lab">Lab</span>
+<!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1149" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/32">
+                                            <span class="item-bullet">2.32</span>
+                                    <span>
+                                        LAB: Phone number breakdown
+                                    </span>
+                                    <div class="section-labels">
+                                            <span class="nav-item-label-lab">Lab</span>
+<!---->                                            <span class="nav-item-label-hidden">Hidden</span>
+<!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1150" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/33">
+                                            <span class="item-bullet">2.33</span>
+                                    <span>
+                                        LAB: Musical note frequencies
+                                    </span>
+                                    <div class="section-labels">
+                                            <span class="nav-item-label-lab">Lab</span>
+<!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1151" class="ember-view invisible" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/34">
+                                            <span class="item-bullet">2.34</span>
+                                    <span>
+                                        LAB: Input: Mad Lib
+                                    </span>
+                                    <div class="section-labels">
+                                            <span class="nav-item-label-lab">Lab</span>
+<!---->                                            <span class="nav-item-label-hidden">Hidden</span>
+<!---->                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a id="ember1152" class="ember-view invisible" target="_blank" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/print">
+                                            <i class="zb-icon material-icons med grey   item-bullet" role="img" aria-label="print">
+            print
+<!----></i>
+
+                                                                            <span>
+                                        Print chapter
+                                    </span>
+                                    <div class="section-labels">
+<!----><!----><!----><!---->                                    </div>
+                                </a>
+                            </li>
+                    </ul>
+            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-899="899">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">3)</span>
+                            <span class="list-toggle-title">
+                                Branches and loops,  short circuit evaluation
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-900="900">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">4)</span>
+                            <span class="list-toggle-title">
+                                Functions: the very basics (parameter passing, variable scopes, etc.)
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-901="901">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">5)</span>
+                            <span class="list-toggle-title">
+                                strings and the two C++ implementations: the string class and c-strings
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-902="902">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">6)</span>
+                            <span class="list-toggle-title">
+                                struct: one way to declare object-oriented data types
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-903="903">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">7)</span>
+                            <span class="list-toggle-title">
+                                Arrays and the two built-in implementation: fixed-size arrays and vector (an STL container class) 
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-904="904">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">8)</span>
+                            <span class="list-toggle-title">
+                                Object-oriented programming: user-defined classes (Part  I)
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-905="905">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">9)</span>
+                            <span class="list-toggle-title">
+                                Separate files, objects and classes (Part II)- inline functions, unit testing, operator overloading, and friends
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-906="906">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">10)</span>
+                            <span class="list-toggle-title">
+                                Streams: cin, cout, file streams, and string streams
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-907="907">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">11)</span>
+                            <span class="list-toggle-title">
+                                Static members and templates
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-908="908">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">12)</span>
+                            <span class="list-toggle-title">
+                                Standard Template Libraries (STL): built-in data structures
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-909="909">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">13)</span>
+                            <span class="list-toggle-title">
+                                The fundamentals of time complexity analysis; a brief review on recursion. 
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-910="910">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">14)</span>
+                            <span class="list-toggle-title">
+                                Recursion: supplementary materials
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-911="911">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">15)</span>
+                            <span class="list-toggle-title">
+                                Pointer basics: new, delete, -&gt;, memory regions, 'this', and memory leaks 
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-912="912">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">16)</span>
+                            <span class="list-toggle-title">
+                                Pointer-based singly linked list and the rule of three
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-913="913">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">17)</span>
+                            <span class="list-toggle-title">
+                                Inheritance and polymorphism
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-914="914">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">18)</span>
+                            <span class="list-toggle-title">
+                                Exceptions
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-915="915">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">19)</span>
+                            <span class="list-toggle-title">
+                                Additional Material
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-916="916">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">20)</span>
+                            <span class="list-toggle-title">
+                                Searching and Sorting Algorithms
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-917="917">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">21)</span>
+                            <span class="list-toggle-title">
+                                Coding Practice Problems
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-918="918">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">22)</span>
+                            <span class="list-toggle-title">
+                                Additional Labs: Variables / Assignments
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-919="919">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">23)</span>
+                            <span class="list-toggle-title">
+                                Additional Labs: Branches
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-920="920">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">24)</span>
+                            <span class="list-toggle-title">
+                                Additional Labs: Loops
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-921="921">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">25)</span>
+                            <span class="list-toggle-title">
+                                Additional Labs: Arrays / Vectors
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-922="922">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">26)</span>
+                            <span class="list-toggle-title">
+                                Additional Labs: User-Defined Functions
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-923="923">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">27)</span>
+                            <span class="list-toggle-title">
+                                Additional Labs: Objects and Classes
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-924="924">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">28)</span>
+                            <span class="list-toggle-title">
+                                Additional Labs: Recursion
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-925="925">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">29)</span>
+                            <span class="list-toggle-title">
+                                Additional Labs: Introduction to C++
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+            <li>
+                <button aria-expanded="false" class="list-toggle" type="button" data-ember-action="" data-ember-action-926="926">
+                    <div class="list-toggle">
+                        <div class="flex-row">
+                                    <span class="item-bullet">30)</span>
+                            <span class="list-toggle-title">
+                                Additional Labs: Pointers
+                            </span>
+                        </div>
+<!---->                            <i class="zb-icon material-icons med grey   item-icon" role="img" aria-label="expand_more" aria-hidden="true">
+            expand_more
+<!----></i>
+
+                    </div>
+                </button>
+
+<!---->            </li>
+</ul>
+</nav>
+
+    <section class="section-container">
+<!---->            <nav class="section-nav previous" aria-label="previous section">
+                <a id="ember1024" class="ember-view nav-link" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/6">
+                    <i class="zb-icon material-icons sm secondary  " role="img" aria-label="arrow_upward" aria-hidden="true">
+            arrow_upward
+<!----></i>
+
+                    <span class="nav-text previous">
+                        2.6 Characters
+                    </span>
+                </a>
+        </nav>
+
+    <div role="main" aria-label="section content">
+<!---->
+<!---->
+<!---->
+            <div class="section-announcement zb-card primary assignment-section-announcement">
+        <div class="icon-container">
+            <i class="zb-icon material-icons xl white  " role="img" aria-label="assignment">
+            assignment
+<!----></i>
+
+        </div>
+
+<!---->
+        <div class="section-announcement-block-content">
+                <span class="announcement-title">Students:</span>
+                <div class="assignment-announcement-content">
+                    <div class="title-message">
+                        <div class="assignment-title">
+                            <span>
+                                Section 2.7 is a part of
+                                1 assignment:
+                            </span>
+                                <span class="title-text">Reading #2: variables &amp; simple data types</span>
+<!---->                        </div>
+                        <div class="error">
+<!----><!---->                        </div>
+                    </div>
+                    <div>
+                        <div class="flex flex-row mb-2">
+                            <span class="mr-1">Requirements:</span>
+<!---->                                <div class="mx-1 zb-chevron   blue  filled  small" role="img">
+    
+</div>
+
+                                <span class="mx-1">CA</span>
+<!----><!---->                        </div>
+                            <div class="assignment-due-date-lms-details in-section col-start-2">
+            <div class="due-date-text body-text  flex items-center">
+                        Due: 02/10/2023, 11:59 PM PST
+            </div>
+<!----><!----></div>
+
+                    </div>
+                </div>
+            </div>
+
+<!----></div>
+
+
+<!---->
+<!---->
+<!---->
+        <article id="ember1025" class="zb-card ember-view zybook-section"><div class="zb-card-content ">
+    
+<!----><!---->    <div class="section-header-row">
+        <h1 canonical_section_guid="78329f1c-dece-f405-29ca-59535f7abe94cpp" canonical_section_id="25735104" class="zybook-section-title">
+            2.7 Character operations
+        </h1>
+            <div class="section-action-container">
+<!---->
+<!----><!----><!----><!---->
+<!---->            </div>
+    </div>
+
+<!---->
+<!---->
+<!---->
+<!---->
+        <div class="section-content-resources-container">
+                        <div content_resource_guid="78329f1c-dece-f405-29ca-59535f7abe94cpp_34ea1a61-5de2-4c8d-9c93-0534ba3e92eccpp" content_resource_id="72213707" id="ember1026" class="content-resource html-resource html-content-resource ember-view">    
+ 
+<p> Including the <span class="term" obeycase="true">cctype library</span>  via <code style="white-space: pre;">#include &lt;cctype&gt;</code>
+ provides access to several functions for working with characters. ctype
+  stands for character type. The first c indicates the library is 
+originally from the C language.</p> 
+
+
+
+<!----><!---->
+</div>
+        
+<!---->
+<!---->            <div content_resource_guid="78329f1c-dece-f405-29ca-59535f7abe94cpp_f12dc8cb-887c-fdf6-b2ae-12c645bc13dccppcpp" content_resource_id="72213708" id="ember1028" class="static-container container-content-resource large ember-view">    <div class="static-container-header ">
+        <div class="static-container-title " role="button" data-ember-action="" data-ember-action-1030="1030">
+                    Table 2.7.1: Character functions return values.<!----><!---->
+        </div>
+<!----><!---->    </div>
+
+    <div class="static-container-payload">
+        <div class="">
+<!---->            <div id="ember1032" class="content-resource container-content-resource ember-view">    <div class="container-resource-payload">
+        <div class="table">
+<div class="table"><table>
+<tbody><tr>
+<td><span class="term" obeycase="false">isalpha</span>(c)</td> 
+<td> true if alphabetic: <br>a-z or A-Z </td>
+<td> <div class="code no-box"><div class="highlight"><pre><span></span><span class="n">isalpha</span><span class="p">(</span><span class="sc">'x'</span><span class="p">)</span><span class="w"> </span><span class="c1">// true</span>
+<span class="n">isalpha</span><span class="p">(</span><span class="sc">'6'</span><span class="p">)</span><span class="w"> </span><span class="c1">// false</span>
+<span class="n">isalpha</span><span class="p">(</span><span class="sc">'!'</span><span class="p">)</span><span class="w"> </span><span class="c1">// false</span>
+</pre></div></div> </td> 
+<td>&nbsp;</td>
+
+<td><span class="term" obeycase="false">toupper</span>(c)</td> 
+<td> Uppercase version </td>
+<td> <div class="code no-box"><div class="highlight"><pre><span></span><span class="n">letter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">toupper</span><span class="p">(</span><span class="sc">'a'</span><span class="p">)</span><span class="w">  </span><span class="c1">// A</span>
+<span class="n">letter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">toupper</span><span class="p">(</span><span class="sc">'A'</span><span class="p">)</span><span class="w">  </span><span class="c1">// A</span>
+<span class="n">letter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">toupper</span><span class="p">(</span><span class="sc">'3'</span><span class="p">)</span><span class="w">  </span><span class="c1">// 3</span>
+</pre></div></div> </td> 
+</tr>
+
+<tr>
+<td><span class="term" obeycase="false">isdigit</span>(c)</td> 
+<td> true if digit: 0-9.</td>
+<td> <div class="code no-box"><div class="highlight"><pre><span></span><span class="n">isdigit</span><span class="p">(</span><span class="sc">'x'</span><span class="p">)</span><span class="w"> </span><span class="c1">// false</span>
+<span class="n">isdigit</span><span class="p">(</span><span class="sc">'6'</span><span class="p">)</span><span class="w"> </span><span class="c1">// true</span>
+</pre></div></div> </td> 
+<td>&nbsp;</td>
+
+<td><span class="term" obeycase="false">tolower</span>(c)</td> 
+<td>  Lowercase version </td>
+<td> <div class="code no-box"><div class="highlight"><pre><span></span><span class="n">letter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tolower</span><span class="p">(</span><span class="sc">'A'</span><span class="p">)</span><span class="w">  </span><span class="c1">// a</span>
+<span class="n">letter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tolower</span><span class="p">(</span><span class="sc">'a'</span><span class="p">)</span><span class="w">  </span><span class="c1">// a</span>
+<span class="n">letter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tolower</span><span class="p">(</span><span class="sc">'3'</span><span class="p">)</span><span class="w">  </span><span class="c1">// 3</span>
+</pre></div></div> </td> 
+</tr>
+
+<tr> 
+<td><span class="term" obeycase="false">isspace</span>(c)</td> 
+<td> true if whitespace.</td>
+<td> <div class="code no-box"><div class="highlight"><pre><span></span><span class="n">isspace</span><span class="p">(</span><span class="sc">' '</span><span class="p">)</span><span class="w">  </span><span class="c1">// true</span>
+<span class="n">isspace</span><span class="p">(</span><span class="sc">'\n'</span><span class="p">)</span><span class="w"> </span><span class="c1">// true</span>
+<span class="n">isspace</span><span class="p">(</span><span class="sc">'x'</span><span class="p">)</span><span class="w">  </span><span class="c1">// false</span>
+</pre></div></div> </td> 
+</tr> 
+</tbody></table></div>
+
+<sub>Note: Above, false is zero, and true is non-zero.</sub>
+<br><br>
+<p> See <a href="http://www.cplusplus.com/reference/cctype/" target="_blank">  http://www.cplusplus.com/reference/cctype/ </a> for a more complete list (applies to both C and C++). </p> 
+</div><!----><!---->
+    </div>
+</div>
+        </div>
+    </div>
+
+    <div class="zb-feedback resource" id="ember1029">
+        <div class="feedback-control-row">
+<!----><!---->
+<!---->
+                <button aria-disabled="false" class="zb-button  secondary             open-feedback expand-feedback-button" type="button">
+<!---->            <span class="title">Feedback?</span>
+<!----></button>
+
+        </div>
+
+<!----><!----></div>
+
+
+<!----></div>
+
+<!---->
+<!---->            <div content_resource_guid="78329f1c-dece-f405-29ca-59535f7abe94cpp_8574baae-11b0-98a8-e7c4-4f76ff94cd32cppcpp" content_resource_id="72213709" id="ember1034" class="static-container container-content-resource large ember-view">    <div class="static-container-header ">
+        <div class="static-container-title " role="button" data-ember-action="" data-ember-action-1036="1036">
+                    Figure 2.7.1: State abbreviation capitalization.<!----><!---->
+        </div>
+<!----><!---->    </div>
+
+    <div class="static-container-payload">
+        <div class="">
+<!---->            <div id="ember1038" class="content-resource container-content-resource ember-view">    <div class="container-resource-payload">
+        <table><tbody><tr><td><div class="code"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;cctype&gt;</span><span class="cp"></span>
+<span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="p">;</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="kt">char</span><span class="w"> </span><span class="n">let0</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="kt">char</span><span class="w"> </span><span class="n">let1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Enter a two-letter state abbreviation: "</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">let0</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="n">cin</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">let1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="o">!</span><span class="w"> </span><span class="p">(</span><span class="n">isalpha</span><span class="p">(</span><span class="n">let0</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isalpha</span><span class="p">(</span><span class="n">let1</span><span class="p">))</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Error: Both are not letters."</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+<span class="w">   </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">let0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">toupper</span><span class="p">(</span><span class="n">let0</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">let1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">toupper</span><span class="p">(</span><span class="n">let1</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Capitalized: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">let0</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">let1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div></div></td><td><div class="console"><pre>Enter a two-letter state abbreviation: az
+Capitalized: AZ
+...
+Enter a two-letter state abbreviation: AZ
+Capitalized: AZ
+...
+Enter a two-letter state abbreviation: Mn
+Capitalized: MN
+...
+Enter a two-letter state abbreviation: 5x
+Error: Both are not letters.
+...
+Enter a two-letter state abbreviation: A@
+Error: Both are not letters.</pre></div></td></tr></tbody></table><!----><!---->
+    </div>
+</div>
+        </div>
+    </div>
+
+    <div class="zb-feedback resource" id="ember1035">
+        <div class="feedback-control-row">
+<!----><!---->
+<!---->
+                <button aria-disabled="false" class="zb-button  secondary             open-feedback expand-feedback-button" type="button">
+<!---->            <span class="title">Feedback?</span>
+<!----></button>
+
+        </div>
+
+<!----><!----></div>
+
+
+<!----></div>
+
+<!---->
+<!---->            <div content_resource_guid="78329f1c-dece-f405-29ca-59535f7abe94cpp_7972c831-e5a7-b2db-836b-8b72e8ee28c6cppcpp" content_resource_id="72213710" id="ember1040" class="interactive-activity-container multiple-choice-content-resource participation large ember-view"><div class="activity-title-bar" role="button" data-ember-action="" data-ember-action-1042="1042">
+    <div aria-label="participation activity" class="activity-type w-min">
+        participation activity
+    </div>
+
+    <div class="activity-description">
+            <div class="activity-title">
+                2.7.1:
+                    Character functions.<!----><!---->
+            </div>
+<!---->            <div class="title-bar-chevron-container">
+<!----><!---->
+<!---->
+<!---->
+                        <div aria-label="Activity completed" role="img" class="zb-chevron check title-bar-chevron orange  filled  large">
+    
+</div>
+
+            </div>
+    </div>
+</div>
+<div class="activity-payload">
+        <div class="activity-instructions">
+            
+<p> To what value does each evaluate?  userStr is "Hey #1?". </p>
+
+<!----><!---->
+        </div>
+    <!---->
+    <div id="ember1045" class="content-resource multiple-choice-payload ember-view">        <div id="ember1046" class="question-set-question multiple-choice-question ember-view"><div class="question">
+        <div class="setup flex-row">
+                <div class="label" id="question-enumeration-ember1046">1)</div>
+                <div class="text" id="question-text-ember1046"> isalpha('7') <!----><!----></div>
+        </div>
+
+            <div aria-labelledby="question-enumeration-ember1046 question-text-ember1046" class="question-choices" role="radiogroup">
+                    <div id="ember1048" class="zb-radio-button orange orange ember-view"><input aria-label="True" name="11" type="radio" value="&lt;(unknown):ember1049&gt;">
+<label aria-hidden="true">
+        True<!----><!---->
+</label>
+</div>
+                    <div id="ember1051" class="zb-radio-button orange orange ember-view"><input aria-label="False" name="11" type="radio" value="&lt;(unknown):ember1052&gt;" checked="checked">
+<label aria-hidden="true">
+        False<!----><!---->
+</label>
+</div>
+            </div>
+</div>
+    <div aria-atomic="true" aria-live="polite" class="zb-explanation has-explanation correct">
+                <p class="message">
+                    Correct
+                </p>
+                '7' is not  alphabetic (a-z or A-Z.) <!----><!---->
+    </div>
+
+            <div class="chevron-container">
+            <div aria-label="Question completed" class="zb-chevron check question-chevron orange  filled  medium" role="img">
+    
+</div>
+
+    </div>
+
+
+<!---->
+<!----></div>
+        <div id="ember1054" class="question-set-question multiple-choice-question ember-view"><div class="question">
+        <div class="setup flex-row">
+                <div class="label" id="question-enumeration-ember1054">2)</div>
+                <div class="text" id="question-text-ember1054"> isalpha(userStr.at(0)) <!----><!----></div>
+        </div>
+
+            <div aria-labelledby="question-enumeration-ember1054 question-text-ember1054" class="question-choices" role="radiogroup">
+                    <div id="ember1056" class="zb-radio-button orange orange ember-view"><input aria-label="True" name="12" type="radio" value="&lt;(unknown):ember1057&gt;" checked="checked">
+<label aria-hidden="true">
+        True<!----><!---->
+</label>
+</div>
+                    <div id="ember1059" class="zb-radio-button orange orange ember-view"><input aria-label="False" name="12" type="radio" value="&lt;(unknown):ember1060&gt;">
+<label aria-hidden="true">
+        False<!----><!---->
+</label>
+</div>
+            </div>
+</div>
+    <div aria-atomic="true" aria-live="polite" class="zb-explanation has-explanation correct">
+                <p class="message">
+                    Correct
+                </p>
+                'H' is alphabetic. <!----><!---->
+    </div>
+
+            <div class="chevron-container">
+            <div aria-label="Question completed" class="zb-chevron check question-chevron orange  filled  medium" role="img">
+    
+</div>
+
+    </div>
+
+
+<!---->
+<!----></div>
+        <div id="ember1062" class="question-set-question multiple-choice-question ember-view"><div class="question">
+        <div class="setup flex-row">
+                <div class="label" id="question-enumeration-ember1062">3)</div>
+                <div class="text" id="question-text-ember1062"> isspace(userStr.at(3)) <!----><!----></div>
+        </div>
+
+            <div aria-labelledby="question-enumeration-ember1062 question-text-ember1062" class="question-choices" role="radiogroup">
+                    <div id="ember1064" class="zb-radio-button orange orange ember-view"><input aria-label="True" name="13" type="radio" value="&lt;(unknown):ember1065&gt;" checked="checked">
+<label aria-hidden="true">
+        True<!----><!---->
+</label>
+</div>
+                    <div id="ember1067" class="zb-radio-button orange orange ember-view"><input aria-label="False" name="13" type="radio" value="&lt;(unknown):ember1068&gt;">
+<label aria-hidden="true">
+        False<!----><!---->
+</label>
+</div>
+            </div>
+</div>
+    <div aria-atomic="true" aria-live="polite" class="zb-explanation has-explanation correct">
+                <p class="message">
+                    Correct
+                </p>
+                That character is a space ' ' between the y and #. <!----><!---->
+    </div>
+
+            <div class="chevron-container">
+            <div aria-label="Question completed" class="zb-chevron check question-chevron orange  filled  medium" role="img">
+    
+</div>
+
+    </div>
+
+
+<!---->
+<!----></div>
+        <div id="ember1070" class="question-set-question multiple-choice-question ember-view"><div class="question">
+        <div class="setup flex-row">
+                <div class="label" id="question-enumeration-ember1070">4)</div>
+                <div class="text" id="question-text-ember1070"> isdigit(userStr.at(6)) <!----><!----></div>
+        </div>
+
+            <div aria-labelledby="question-enumeration-ember1070 question-text-ember1070" class="question-choices" role="radiogroup">
+                    <div id="ember1072" class="zb-radio-button orange orange ember-view"><input aria-label="True" name="14" type="radio" value="&lt;(unknown):ember1073&gt;">
+<label aria-hidden="true">
+        True<!----><!---->
+</label>
+</div>
+                    <div id="ember1075" class="zb-radio-button orange orange ember-view"><input aria-label="False" name="14" type="radio" value="&lt;(unknown):ember1076&gt;" checked="checked">
+<label aria-hidden="true">
+        False<!----><!---->
+</label>
+</div>
+            </div>
+</div>
+    <div aria-atomic="true" aria-live="polite" class="zb-explanation has-explanation correct">
+                <p class="message">
+                    Correct
+                </p>
+                That character is '?'. <!----><!---->
+    </div>
+
+            <div class="chevron-container">
+            <div aria-label="Question completed" class="zb-chevron check question-chevron orange  filled  medium" role="img">
+    
+</div>
+
+    </div>
+
+
+<!---->
+<!----></div>
+        <div id="ember1078" class="question-set-question multiple-choice-question ember-view"><div class="question">
+        <div class="setup flex-row">
+                <div class="label" id="question-enumeration-ember1078">5)</div>
+                <div class="text" id="question-text-ember1078"> toupper(userStr.at(1)) returns 'E'. <!----><!----></div>
+        </div>
+
+            <div aria-labelledby="question-enumeration-ember1078 question-text-ember1078" class="question-choices" role="radiogroup">
+                    <div id="ember1080" class="zb-radio-button orange orange ember-view"><input aria-label="True" name="15" type="radio" value="&lt;(unknown):ember1081&gt;" checked="checked">
+<label aria-hidden="true">
+        True<!----><!---->
+</label>
+</div>
+                    <div id="ember1083" class="zb-radio-button orange orange ember-view"><input aria-label="False" name="15" type="radio" value="&lt;(unknown):ember1084&gt;">
+<label aria-hidden="true">
+        False<!----><!---->
+</label>
+</div>
+            </div>
+</div>
+    <div aria-atomic="true" aria-live="polite" class="zb-explanation has-explanation correct">
+                <p class="message">
+                    Correct
+                </p>
+                'e' becomes 'E'. <!----><!---->
+    </div>
+
+            <div class="chevron-container">
+            <div aria-label="Question completed" class="zb-chevron check question-chevron orange  filled  medium" role="img">
+    
+</div>
+
+    </div>
+
+
+<!---->
+<!----></div>
+        <div id="ember1086" class="question-set-question multiple-choice-question ember-view"><div class="question">
+        <div class="setup flex-row">
+                <div class="label" id="question-enumeration-ember1086">6)</div>
+                <div class="text" id="question-text-ember1086"> tolower(userStr.at(2)) yields an error because 'y' is already lower case. <!----><!----></div>
+        </div>
+
+            <div aria-labelledby="question-enumeration-ember1086 question-text-ember1086" class="question-choices" role="radiogroup">
+                    <div id="ember1088" class="zb-radio-button orange orange ember-view"><input aria-label="True" name="16" type="radio" value="&lt;(unknown):ember1089&gt;">
+<label aria-hidden="true">
+        True<!----><!---->
+</label>
+</div>
+                    <div id="ember1091" class="zb-radio-button orange orange ember-view"><input aria-label="False" name="16" type="radio" value="&lt;(unknown):ember1092&gt;" checked="checked">
+<label aria-hidden="true">
+        False<!----><!---->
+</label>
+</div>
+            </div>
+</div>
+    <div aria-atomic="true" aria-live="polite" class="zb-explanation has-explanation correct">
+                <p class="message">
+                    Correct
+                </p>
+                No error, just returns 'y'.  <!----><!---->
+    </div>
+
+            <div class="chevron-container">
+            <div aria-label="Question completed" class="zb-chevron check question-chevron orange  filled  medium" role="img">
+    
+</div>
+
+    </div>
+
+
+<!---->
+<!----></div>
+        <div id="ember1094" class="question-set-question multiple-choice-question ember-view"><div class="question">
+        <div class="setup flex-row">
+                <div class="label" id="question-enumeration-ember1094">7)</div>
+                <div class="text" id="question-text-ember1094"> tolower(userStr.at(6)) yields an error because '?' is not alphabetic. <!----><!----></div>
+        </div>
+
+            <div aria-labelledby="question-enumeration-ember1094 question-text-ember1094" class="question-choices" role="radiogroup">
+                    <div id="ember1096" class="zb-radio-button orange orange ember-view"><input aria-label="True" name="17" type="radio" value="&lt;(unknown):ember1097&gt;">
+<label aria-hidden="true">
+        True<!----><!---->
+</label>
+</div>
+                    <div id="ember1099" class="zb-radio-button orange orange ember-view"><input aria-label="False" name="17" type="radio" value="&lt;(unknown):ember1100&gt;" checked="checked">
+<label aria-hidden="true">
+        False<!----><!---->
+</label>
+</div>
+            </div>
+</div>
+    <div aria-atomic="true" aria-live="polite" class="zb-explanation has-explanation correct">
+                <p class="message">
+                    Correct
+                </p>
+                No error, just returns '?'.  <!----><!---->
+    </div>
+
+            <div class="chevron-container">
+            <div aria-label="Question completed" class="zb-chevron check question-chevron orange  filled  medium" role="img">
+    
+</div>
+
+    </div>
+
+
+<!---->
+<!----></div>
+        <div id="ember1102" class="question-set-question multiple-choice-question ember-view"><div class="question">
+        <div class="setup flex-row">
+                <div class="label" id="question-enumeration-ember1102">8)</div>
+                <div class="text" id="question-text-ember1102"> After tolower(userStr.at(0)), userStr becomes "hey #1?"<!----><!----></div>
+        </div>
+
+            <div aria-labelledby="question-enumeration-ember1102 question-text-ember1102" class="question-choices" role="radiogroup">
+                    <div id="ember1104" class="zb-radio-button orange orange ember-view"><input aria-label="True" name="18" type="radio" value="&lt;(unknown):ember1105&gt;">
+<label aria-hidden="true">
+        True<!----><!---->
+</label>
+</div>
+                    <div id="ember1107" class="zb-radio-button orange orange ember-view"><input aria-label="False" name="18" type="radio" value="&lt;(unknown):ember1108&gt;" checked="checked">
+<label aria-hidden="true">
+        False<!----><!---->
+</label>
+</div>
+            </div>
+</div>
+    <div aria-atomic="true" aria-live="polite" class="zb-explanation has-explanation correct">
+                <p class="message">
+                    Correct
+                </p>
+                tolower does not modify its string argument, but rather returns a value.  <!----><!---->
+    </div>
+
+            <div class="chevron-container">
+            <div aria-label="Question completed" class="zb-chevron check question-chevron orange  filled  medium" role="img">
+    
+</div>
+
+    </div>
+
+
+<!---->
+<!----></div>
+<!----></div>
+</div>
+
+<div class="flex-row ">
+<!---->
+        <div class="zb-feedback resource" id="ember1041">
+        <div class="feedback-control-row">
+<!----><!---->
+<!---->
+                <button aria-disabled="false" class="zb-button  secondary             open-feedback expand-feedback-button" type="button">
+<!---->            <span class="title">Feedback?</span>
+<!----></button>
+
+        </div>
+
+<!----><!----></div>
+
+</div>
+</div>
+
+<!---->
+<!---->            <div content_resource_guid="78329f1c-dece-f405-29ca-59535f7abe94cpp_644b2285-f9bb-452b-91e4-2d148da4632acppcpp" content_resource_id="72213711" id="ember1110" class="interactive-activity-container content-tool-content-resource challenge large ember-view"><div class="activity-title-bar" role="button" data-ember-action="" data-ember-action-1112="1112">
+    <div aria-label="challenge activity" class="activity-type w-min">
+        challenge activity
+    </div>
+
+    <div class="activity-description">
+            <div class="activity-title">
+                2.7.1:
+                    Character operations.<!----><!---->
+            </div>
+<!---->            <div class="title-bar-chevron-container">
+<!----><!---->
+<!---->
+<!---->
+                        <div aria-label="Activity not completed" role="img" class="zb-chevron  title-bar-chevron grey   chevron-outline large">
+    
+</div>
+
+            </div>
+    </div>
+</div>
+<div class="activity-payload">
+<!---->        <div class="activity-watermark">465922.3257450.qx3zqy7</div>
+
+    <div id="ember1114" class="content-resource content-tool-resource-payload ember-view"><div class="content-tool-container">
+    <div class="progression-container">
+        <div class="mb-4">
+                <button aria-disabled="false" class="zb-button  secondary            " type="button">
+<!---->            <span class="title">Jump to level 1</span>
+<!----></button>
+
+        </div>
+            <div class="code-writing-prompt">
+    <div id="ember1203" class="ember-view"><p>Read in a 3-character 
+string from input into variable passwordStr. Declare a boolean variable 
+containsAlpha and set containsAlpha to true if passwordStr contains an 
+alphabetic character. Otherwise, set containsAlpha to false.</p>
+<p>Ex: If the input is <code>3c8</code>, then the output is:</p>
+<p><code>Good password</code></p>
+<p>Note: Use getline(cin, passwordStr) to read the entire line from input into passwordStr.</p>
+</div>
+
+<!---->
+        <div class="code-editor">
+                <div id="ember1204" class="ace-editor-container ember-view">    <div class="ace-editor card-shadow ace_editor ace_hidpi ace-autumn ace_focus" id="ace-editor" style="font-size: 14px;"><textarea class="ace_text-input" autocorrect="off" autocapitalize="none" spellcheck="false" style="opacity: 0; font-size: 1px; height: 1px; width: 1px; transform: translate(47px, 213px);" aria-haspopup="false" aria-autocomplete="both" role="textbox" wrap="off">
+
+</textarea><div class="ace_gutter" aria-hidden="true" style="left: 0px; width: 43px;"><div class="ace_layer ace_gutter-layer" style="height: 1000000px; transform: translate(0px, -119px); width: 43px;"><div class="ace_gutter-cell " style="height: 19.5333px; top: 117.2px;">7<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 136.733px;">8<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 156.267px;">9<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 175.8px;">10<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 195.333px;">11<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 214.867px;">12<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 234.4px;">13<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 253.933px;">14<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 273.467px;">15<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 293px;">16<span style="display: none;"></span></div><div class="ace_gutter-active-line ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 312.533px;">17<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 332.067px;">18<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 351.6px;">19<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 371.133px;">20<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 390.667px;">21<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 410.2px;">22<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 429.734px;">23<span style="display: none;"></span></div><div class="ace_gutter-cell  gutter-highlight" style="height: 19.5333px; top: 449.267px;">24<span style="display: none;"></span></div></div></div><div class="ace_scroller" style="line-height: 19.5333px; left: 42.8px; right: 0px; bottom: 0px;"><div class="ace_content" style="transform: translate(0px, -2px); width: 857.2px; height: 339.067px;"><div class="ace_layer ace_print-margin-layer"><div class="ace_print-margin" style="left: 676px; visibility: hidden;"></div></div><div class="ace_layer ace_marker-layer"><div style="height: 19.5333px; top: 195.333px; left: 0px; right: 0px;" class="ace_active-line"></div></div><div class="ace_layer ace_text-layer" style="height: 1000000px; margin: 0px 4px; transform: translate(0px, -117px);"><div style="height: 19.5333px; top: 117.2px;" class="ace_line" role="option"><span>   </span><span class="ace_identifier">string</span><span> </span><span class="ace_identifier">passwordStr</span><span class="ace_punctuation ace_operator">;</span></div><div style="height: 19.5333px; top: 136.733px;" class="ace_line" role="option"><span>   </span></div><div style="height: 19.5333px; top: 156.267px;" class="ace_line" role="option"><span>   </span><span class="ace_storage ace_type">bool</span><span> </span><span class="ace_identifier">containsAlpha</span><span class="ace_punctuation ace_operator">;</span></div><div style="height: 19.5333px; top: 175.8px;" class="ace_line" role="option"><span>   </span></div><div style="height: 19.5333px; top: 195.333px;" class="ace_line" role="option"><span>   </span><span class="ace_identifier">getline</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">cin</span><span class="ace_punctuation ace_operator">,</span><span> </span><span class="ace_identifier">passwordStr</span><span class="ace_paren ace_rparen">)</span><span class="ace_punctuation ace_operator">;</span></div><div style="height: 19.5333px; top: 214.867px;" class="ace_line" role="option"><span>   </span></div><div style="height: 19.5333px; top: 234.4px;" class="ace_line" role="option"><span>   </span><span class="ace_keyword ace_control">for</span><span> </span><span class="ace_paren ace_lparen">(</span><span class="ace_storage ace_type">int</span><span> </span><span class="ace_identifier">i</span><span> </span><span class="ace_keyword ace_operator">=</span><span> </span><span class="ace_constant ace_numeric">1</span><span class="ace_punctuation ace_operator">;</span><span> </span><span class="ace_identifier">i</span><span> </span><span class="ace_keyword ace_operator">&lt;=</span><span> </span><span class="ace_constant ace_numeric">3</span><span> </span><span class="ace_punctuation ace_operator">;</span><span> </span><span class="ace_identifier">i</span><span class="ace_keyword ace_operator">++</span><span class="ace_paren ace_rparen">)</span><span class="ace_paren ace_lparen">{</span></div><div style="height: 19.5333px; top: 253.933px;" class="ace_line" role="option"><span>   </span><span class="ace_keyword ace_control">if</span><span class="ace_paren ace_lparen">(</span><span class="ace_support ace_function ace_C99 ace_c">isalpha</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">passwordStr</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">at</span><span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_numeric">0</span><span class="ace_paren ace_rparen">)))</span><span class="ace_paren ace_lparen">{</span></div><div style="height: 19.5333px; top: 273.467px;" class="ace_line" role="option"><span>   </span><span class="ace_identifier">containsAlpha</span><span> </span><span class="ace_keyword ace_operator">=</span><span> </span><span class="ace_constant ace_language">true</span><span class="ace_punctuation ace_operator">;</span></div><div style="height: 19.5333px; top: 293px;" class="ace_line" role="option"><span>   </span><span class="ace_paren ace_rparen">}</span></div><div style="height: 19.5333px; top: 312.533px;" class="ace_line" role="option"></div><div style="height: 19.5333px; top: 332.067px;" class="ace_line" role="option"><span>   </span><span class="ace_keyword ace_control">if</span><span class="ace_paren ace_lparen">(</span><span class="ace_support ace_function ace_C99 ace_c">isalpha</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">passwordStr</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">at</span><span class="ace_paren ace_lparen">(</span><span class="ace_constant ace_numeric">1</span><span class="ace_paren ace_rparen">)))</span><span class="ace_paren ace_lparen">{</span></div><div style="height: 19.5333px; top: 351.6px;" class="ace_line" role="option"><span class="ace_indent-guide">   </span><span>   </span><span class="ace_identifier">containsAlpha</span><span> </span><span class="ace_keyword ace_operator">=</span><span> </span><span class="ace_constant ace_language">true</span><span class="ace_punctuation ace_operator">;</span></div><div style="height: 19.5333px; top: 371.133px;" class="ace_line" role="option"><span>   </span><span class="ace_paren ace_rparen">}</span></div><div style="height: 19.5333px; top: 390.667px;" class="ace_line" role="option"><span>   </span><span class="ace_keyword ace_control">if</span><span class="ace_paren ace_lparen">(</span><span class="ace_support ace_function ace_C99 ace_c">isalpha</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">passwordStr</span><span class="ace_punctuation ace_operator">.</span><span class="ace_identifier">at</span><span class="ace_paren ace_lparen">(</span><span class="ace_identifier">i</span><span class="ace_constant ace_numeric">-1</span><span class="ace_paren ace_rparen">)))</span><span class="ace_paren ace_lparen">{</span></div><div style="height: 19.5333px; top: 410.2px;" class="ace_line" role="option"><span class="ace_indent-guide">   </span><span>   </span><span class="ace_identifier">containsAlpha</span><span> </span><span class="ace_keyword ace_operator">=</span><span> </span><span class="ace_constant ace_language">true</span><span class="ace_punctuation ace_operator">;</span></div><div style="height: 19.5333px; top: 429.734px;" class="ace_line" role="option"><span>   </span><span class="ace_paren ace_rparen">}</span><span> </span></div></div><div class="ace_layer ace_marker-layer"></div><div class="ace_layer ace_cursor-layer ace_animate-blinking"><div class="ace_cursor" style="display: block; transform: translate(4px, 195px); width: 8px; height: 19.5333px; animation-duration: 1000ms;"></div></div></div></div><div class="ace_scrollbar ace_scrollbar-v" style="width: 20px; height: 300px; bottom: 0px;"><div class="ace_scrollbar-inner" style="width: 20px; height: 742.734px;">&nbsp;</div></div><div class="ace_scrollbar ace_scrollbar-h" style="display: none; height: 20px; left: 42.8px; right: 0px; width: 857.2px;"><div class="ace_scrollbar-inner" style="height: 20px; width: 857.2px;">&nbsp;</div></div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: hidden;"><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font: inherit; overflow: visible;">הההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההההה</div><div style="height: auto; width: auto; top: 0px; left: 0px; visibility: hidden; position: absolute; white-space: pre; font-style: inherit; font-variant: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; font-size-adjust: inherit; font-kerning: inherit; font-optical-sizing: inherit; font-language-override: inherit; font-feature-settings: inherit; font-variation-settings: inherit; font-palette: inherit; overflow: visible;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</div></div></div>
+<!----></div>
+        </div>
+</div>
+
+
+        <div aria-label="Levels" class="levels-bar" role="group">
+                    <div>
+                        <button aria-disabled="false" class="zb-button  secondary  raised          " aria-pressed="false" type="button">
+<!---->            <span class="title">1</span>
+<!----></button>
+
+                    </div>
+                    <div class="active-level">
+                        <button aria-disabled="false" class="zb-button  grey  raised          " aria-pressed="true" type="button">
+<!---->            <span class="title">2</span>
+<!----></button>
+
+                    </div>
+                    <div>
+                        <button aria-disabled="false" class="zb-button  grey  raised          " aria-pressed="false" type="button">
+<!---->            <span class="title">3</span>
+<!----></button>
+
+                    </div>
+        </div>
+
+    <div class="check-next-container">
+        <button aria-disabled="false" class="zb-button  primary  raised           check" type="button">
+<!---->            <span class="title">Check</span>
+<!----></button>
+
+            <button aria-disabled="true" class="zb-button  primary  raised disabled         " type="button">
+<!---->            <span class="title">Next level</span>
+<!----></button>
+
+        <span aria-live="polite">
+<!---->        </span>
+    </div>
+
+    <div aria-live="polite">
+                <!----><!---->
+<div class="code-explanation">
+        <div class="mb-6" role="alert">
+                <div id="ember1234" class="ember-view"><p>To check if passwordStr contains an alphabetic character, isalpha() is called on each character in passwordStr.<br>If at least one call to isalpha() returns true, then containsAlpha is set to true. Otherwise, containsAlpha is set to false.</p>
+</div>
+            <p>Not all tests passed.</p>
+        </div>
+
+<!---->
+            <div class="test-result allow-expand">
+                    <div aria-controls="ember1235-test-0" aria-expanded="true" aria-label="Test 1 failed: Compare output" class="test-header" role="button" tabindex="0">
+                        <div class="test-title-container">
+                            <i class="zb-icon material-icons med red  " role="presentation" aria-label="clear" aria-hidden="true">
+            clear
+<!----></i>
+
+                            <span>1: Compare output</span>
+                            <i class="zb-icon material-icons med grey   expand-button" role="presentation" aria-label="keyboard_arrow_up" aria-hidden="true">
+            keyboard_arrow_up
+<!----></i>
+
+                        </div>
+                    </div>
+                        <div id="ember1235-test-0" class="expected-output-test-result">
+<!---->                                        <div class="output-differs">
+                                            Output differs. See highlights below.
+<!---->                                        </div>
+
+                                    <div class="test-result-row">
+                                        <div class="result-row-description">Input</div>
+                                        <div class="programming-code-output no-wrap">3c8</div>
+                                    </div>
+
+                                <div class="test-result-row">
+                                    <div class="result-row-description">Your output</div>
+                                        <div class="programming-code-output no-wrap"><span class="string-diff string-diff-highlight ">B</span><span class="string-diff string-diff-highlight ">a</span>d password
+</div>
+                                </div>
+
+                                    <div class="test-result-row">
+                                        <div class="result-row-description">Expected output</div>
+                                            <div class="programming-code-output no-wrap"><span class="string-diff string-diff-highlight ">G</span><span class="string-diff string-diff-highlight ">o</span><span class="string-diff string-diff-highlight ">o</span>d password
+</div>
+                                    </div>
+                        </div>
+            </div>
+            <div class="test-result allow-expand">
+                    <div aria-controls="ember1235-test-1" aria-expanded="true" aria-label="Test 2 failed: Compare output" class="test-header" role="button" tabindex="0">
+                        <div class="test-title-container">
+                            <i class="zb-icon material-icons med red  " role="presentation" aria-label="clear" aria-hidden="true">
+            clear
+<!----></i>
+
+                            <span>2: Compare output</span>
+                            <i class="zb-icon material-icons med grey   expand-button" role="presentation" aria-label="keyboard_arrow_up" aria-hidden="true">
+            keyboard_arrow_up
+<!----></i>
+
+                        </div>
+                    </div>
+                        <div id="ember1235-test-1" class="expected-output-test-result">
+<!---->                                        <div class="output-differs">
+                                            Output differs. See highlights below.
+<!---->                                        </div>
+
+                                    <div class="test-result-row">
+                                        <div class="result-row-description">Input</div>
+                                        <div class="programming-code-output no-wrap">p$ </div>
+                                    </div>
+
+                                <div class="test-result-row">
+                                    <div class="result-row-description">Your output</div>
+                                        <div class="programming-code-output no-wrap"><span class="string-diff string-diff-highlight ">B</span><span class="string-diff string-diff-highlight ">a</span>d password
+</div>
+                                </div>
+
+                                    <div class="test-result-row">
+                                        <div class="result-row-description">Expected output</div>
+                                            <div class="programming-code-output no-wrap"><span class="string-diff string-diff-highlight ">G</span><span class="string-diff string-diff-highlight ">o</span><span class="string-diff string-diff-highlight ">o</span>d password
+</div>
+                                    </div>
+                        </div>
+            </div>
+            <div class="test-result allow-expand">
+                    <div aria-controls="ember1235-test-2" aria-expanded="true" aria-label="Test 3 passed: Compare output" class="test-header" role="button" tabindex="0">
+                        <div class="test-title-container">
+                            <i class="zb-icon material-icons med green  " role="presentation" aria-label="check" aria-hidden="true">
+            check
+<!----></i>
+
+                            <span>3: Compare output</span>
+                            <i class="zb-icon material-icons med grey   expand-button" role="presentation" aria-label="keyboard_arrow_up" aria-hidden="true">
+            keyboard_arrow_up
+<!----></i>
+
+                        </div>
+                    </div>
+                        <div id="ember1235-test-2" class="expected-output-test-result">
+<!----><!---->
+                                    <div class="test-result-row">
+                                        <div class="result-row-description">Input</div>
+                                        <div class="programming-code-output no-wrap">1@d</div>
+                                    </div>
+
+                                <div class="test-result-row">
+                                    <div class="result-row-description">Your output</div>
+                                        <div class="programming-code-output no-wrap">Good password
+</div>
+                                </div>
+
+<!---->                        </div>
+            </div>
+            <div class="test-result allow-expand">
+                    <div aria-controls="ember1235-test-3" aria-expanded="true" aria-label="Test 4 passed: Compare output" class="test-header" role="button" tabindex="0">
+                        <div class="test-title-container">
+                            <i class="zb-icon material-icons med green  " role="presentation" aria-label="check" aria-hidden="true">
+            check
+<!----></i>
+
+                            <span>4: Compare output</span>
+                            <i class="zb-icon material-icons med grey   expand-button" role="presentation" aria-label="keyboard_arrow_up" aria-hidden="true">
+            keyboard_arrow_up
+<!----></i>
+
+                        </div>
+                    </div>
+                        <div id="ember1235-test-3" class="expected-output-test-result">
+<!----><!---->
+                                    <div class="test-result-row">
+                                        <div class="result-row-description">Input</div>
+                                        <div class="programming-code-output no-wrap">510</div>
+                                    </div>
+
+                                <div class="test-result-row">
+                                    <div class="result-row-description">Your output</div>
+                                        <div class="programming-code-output no-wrap">Bad password
+</div>
+                                </div>
+
+<!---->                        </div>
+            </div>
+            <div class="test-result allow-expand">
+                    <div aria-controls="ember1235-test-4" aria-expanded="true" aria-label="Test 5 passed: Compare output" class="test-header" role="button" tabindex="0">
+                        <div class="test-title-container">
+                            <i class="zb-icon material-icons med green  " role="presentation" aria-label="check" aria-hidden="true">
+            check
+<!----></i>
+
+                            <span>5: Compare output</span>
+                            <i class="zb-icon material-icons med grey   expand-button" role="presentation" aria-label="keyboard_arrow_up" aria-hidden="true">
+            keyboard_arrow_up
+<!----></i>
+
+                        </div>
+                    </div>
+                        <div id="ember1235-test-4" class="expected-output-test-result">
+<!----><!---->
+                                    <div class="test-result-row">
+                                        <div class="result-row-description">Input</div>
+                                        <div class="programming-code-output no-wrap"> 67</div>
+                                    </div>
+
+                                <div class="test-result-row">
+                                    <div class="result-row-description">Your output</div>
+                                        <div class="programming-code-output no-wrap">Bad password
+</div>
+                                </div>
+
+<!---->                        </div>
+            </div>
+            <div class="test-result allow-expand">
+                    <div aria-controls="ember1235-test-5" aria-expanded="true" aria-label="Test 6 passed: Compare output" class="test-header" role="button" tabindex="0">
+                        <div class="test-title-container">
+                            <i class="zb-icon material-icons med green  " role="presentation" aria-label="check" aria-hidden="true">
+            check
+<!----></i>
+
+                            <span>6: Compare output</span>
+                            <i class="zb-icon material-icons med grey   expand-button" role="presentation" aria-label="keyboard_arrow_up" aria-hidden="true">
+            keyboard_arrow_up
+<!----></i>
+
+                        </div>
+                    </div>
+                        <div id="ember1235-test-5" class="expected-output-test-result">
+<!----><!---->
+                                    <div class="test-result-row">
+                                        <div class="result-row-description">Input</div>
+                                        <div class="programming-code-output no-wrap">=-1</div>
+                                    </div>
+
+                                <div class="test-result-row">
+                                    <div class="result-row-description">Your output</div>
+                                        <div class="programming-code-output no-wrap">Bad password
+</div>
+                                </div>
+
+<!---->                        </div>
+            </div>
+    <!----></div>
+
+
+    </div>
+</div>
+
+<!----> 
+
+        <div class="chevron-container">
+                    <div aria-label="Question completed" class="zb-chevron check question-chevron blue  filled  medium" role="img">
+    
+</div>
+
+                <div class="completion-text">1</div>
+                    <div aria-label="Question not completed" class="zb-chevron  question-chevron grey   chevron-outline medium" role="img">
+    
+</div>
+
+                <div class="completion-text">2</div>
+                    <div aria-label="Question not completed" class="zb-chevron  question-chevron grey   chevron-outline medium" role="img">
+    
+</div>
+
+                <div class="completion-text">3</div>
+        </div>
+</div>
+
+<div id="ember1115" class="view-solution-container ember-view view-solution"><!----></div>
+
+<!----></div>
+</div>
+
+<div class="flex-row ">
+<!---->
+        <div class="zb-feedback resource" id="ember1111">
+        <div class="feedback-control-row">
+<!----><!---->
+<!---->
+                <button aria-disabled="false" class="zb-button  secondary             open-feedback expand-feedback-button" type="button">
+<!---->            <span class="title">Feedback?</span>
+<!----></button>
+
+        </div>
+
+<!----><!----></div>
+
+</div>
+</div>
+
+<!---->
+<!---->
+        </div>
+
+<!---->
+        <div class="zb-feedback " id="ember1021">
+        <div class="feedback-control-row">
+<!---->                <div class="section-feedback-controls">
+                    <span class="feedback-prompt">How was this section?</span>
+                    <div class="feedback-thumbs-pill raised shadow flex justify-between px-2 items-center">
+                            <button aria-disabled="false" aria-label="Thumbs up" class="zb-button  secondary    icon-button left       " type="button">
+            <i class="zb-icon material-icons-outlined med secondary  " role="img" aria-label="thumb_up" aria-hidden="false">
+            thumb_up
+<!----></i>
+
+<!----><!----></button>
+
+                        <div class="vertical-divider" aria-hidden="true">|</div>
+                            <button aria-disabled="false" aria-label="Thumbs down" class="zb-button  secondary    icon-button left       " type="button">
+            <i class="zb-icon material-icons-outlined med secondary  " role="img" aria-label="thumb_down" aria-hidden="false">
+            thumb_down
+<!----></i>
+
+<!----><!----></button>
+
+                    </div>
+                    <button aria-disabled="false" class="zb-button  secondary             open-feedback" type="button">
+<!---->            <span class="title">Provide section feedback</span>
+<!----></button>
+
+                </div>
+
+<!---->
+<!---->        </div>
+
+<!----><!----></div>
+
+
+</div>
+</article>
+
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+<!---->
+
+            <div id="ember1116" class="zb-card ember-view assignment-completion-summary-card"><div class="zb-card-content ">
+    
+    <div class="header-row">
+        <div class="assignment-completion-header">
+            Activity summary for assignment:
+                Reading #2: variables &amp; simple data types
+<!---->        </div>
+        <div class="points-text-submit-button">
+            <span class="points-completed-text">
+                61 / 145 pts
+            </span>
+<!---->        </div>
+    </div>
+    <div class="due-date-message-row">
+            <div>
+                <div class="due-date-text">
+                    <div class="assignment-due-date-lms-details in-section">
+            <div class="due-date-text body-text  flex items-center">
+                        Due: 02/10/2023, 11:59 PM PST
+            </div>
+<!----><!----></div>
+
+                </div>
+<!---->            </div>
+        <div class="submission-messaging-container">
+<!----><!---->        </div>
+    </div>
+        <button aria-disabled="false" class="zb-button  secondary     right      icon-button-with-title  expand-sections" type="button">
+            <i class="zb-icon material-icons med secondary  " role="img" aria-label="keyboard_arrow_down" aria-hidden="true">
+            keyboard_arrow_down
+<!----></i>
+
+            <span class="title">Completion details</span>
+<!----></button>
+
+<!---->
+</div>
+</div>
+
+
+<!---->    </div>
+
+<!---->
+        <nav class="section-nav next" aria-label="next section">
+                <a id="ember1117" class="ember-view nav-link" href="https://learn.zybooks.com/zybook/SFSUCSC340CaritoSpring2023/chapter/2/section/8">
+                    <i class="zb-icon material-icons sm secondary  " role="img" aria-label="arrow_downward" aria-hidden="true">
+            arrow_downward
+<!----></i>
+
+                    <span class="nav-text next">
+                        2.8 Char library functions: ctype
+                    </span>
+                </a>
+        </nav>
+
+<!---->
+<!---->
+<!---->
+<!---->
+</section>
+
+
+<!---->
+<!---->
+
+<!----></div>
+<iframe name="__privateStripeMetricsController6380" allowtransparency="true" scrolling="no" role="presentation" src="Section%202.7%20-%20CSC%20340%20Programming%20Methodology_files/m-outer-93afeeb17bc37e711759584dbfc50d47.html" aria-hidden="true" tabindex="-1" style="border: medium none !important; margin: 0px !important; padding: 0px !important; width: 1px !important; min-width: 100% !important; overflow: hidden !important; display: block !important; visibility: hidden !important; position: fixed !important; height: 1px !important; pointer-events: none !important; user-select: none !important;" frameborder="0"></iframe></body></html>

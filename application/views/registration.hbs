@@ -1,0 +1,71 @@
+<form method="POST"
+action="/users/register"
+enctype="application/x-www-form-urlencoded">
+	<div class="registration">
+			<h2 class="h2"> ~Sign Up~ </h2>
+			<label for="usernawe">Username </label>
+			<input type="text" name="username"
+			id="username" placeholder="Username" oninput="ValidateUsername()">
+			<div id="check6"> 
+				&#x2713; begins with a character (a-z A-Z)
+			</div>
+			<div id="check7"> 
+				&#x2713; has 3 or more alphanumeric characters
+			</div>
+
+			<br>
+
+			<label for="email"> Email </label>
+			<input type="text" name="email"
+			id="email" placeholder="Email" oninput="checkemail()">
+			<div id="check8"> 
+				&#x2713; is valid
+			</div>
+
+			<br>
+
+			<label for="password"> Password </label>
+			<input type="password" name="password"
+			id="password" placeholder="Password"
+			oninput="checkpassword()" oninput="check()">
+			<div id="check1"> 
+				&#x2713; length is more than 8 characters
+			</div>
+			<div id="check2"> 
+				&#x2713; contains atleast 1 uppercase letter
+			</div>
+			<div id="check3"> 
+				&#x2713; contains atlest 1 number
+			</div>
+			<div id="check4"> 
+				&#x2713; contains atleast 1 special character [/ * _ + ! @ # $ ^ & ~ [ ] ]
+			</div>
+
+			<br>
+
+			<label for="comfirm password"> Comfirm Password </label>
+			<input type="password" name="confirmPassword"
+			id="confirmPassword" placeholder="Confirm Password" oninput="check()">
+			<div id="check5"> 
+				&#x2713; matches password
+			</div>
+
+			<br>
+
+		<input type="checkbox" id="13+age" name="13+age" value="13+age" onclick="requirecb()"  required>
+ 		<label for="13+age"> I am 13+ years of age.</label>
+
+ 			<br>
+ 			<br>
+
+		<input type="checkbox" id="TOSandPrivacyrules" name="TOS and Privacy rules" value="TOS and Privacy rules" onclick="requirecb()" required>
+ 		<label class= "tos" for="TOS and Privacy rules"> I accept all <a href=""> TOS and Privacy rules</a>.</label>
+
+ 			<br>
+			<br>	
+	
+	<button class="submit" type="submit" name="Submit"
+		onclick="requirecb()"> submit </button>
+		</div>
+
+</form>
