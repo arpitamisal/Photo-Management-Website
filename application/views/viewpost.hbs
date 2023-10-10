@@ -1,0 +1,37 @@
+{{log this}}
+	<div class="postimage">
+		<h2 class="h2"> ~View Post~ </h2>
+		<p style="font-family:'Garamond',serif; font-size: 16px;"><strong> Title: </strong> {{currentPost.title}}</p>
+		<p style="font-family:'Garamond',serif; font-size: 16px;"><strong> Description: </strong> {{currentPost.description}}</p>
+		<p style="font-family:'Garamond',serif; font-size: 16px;"><strong> Author: </strong> {{currentPost.username}} </p>
+		<p style="font-family:'Garamond',serif; font-size: 16px;"><strong> Creation Time: </strong>{{formatDate currentPost.createdAt}}</p>
+		<p style="font-family:'Garamond',serif; font-size: 16px;"><strong> Post: </strong> </p>
+		<img style="width:200px" id="image"  alt="Post" src="/{{currentPost.image}}">
+
+		<br></br>
+		<div class="comment-box">
+			<span><strong>Comments:</strong><br></span>
+			<textarea style="width:400px" id="comment-text" class="comment-box-text"></textarea>
+			<br>
+			<br>
+			<button id="comment-button" style="background: #016ba8;
+				color: #fff; padding: 10px 10px; border: none; margin-top: 0px; cursor: pointer; text-transform: uppercase;
+				letter-spacing: 4px; box-shadow: 0px 2px 6px 0px rgba(0, 0, 0, 0.25);transition: 1s all;
+				font-size: 10px;border-radius: 5px;" data-postId="{{currentPost.id}}" class="fa
+			 fa comment comment-box-button"  aria-hidden="true">Add Comment</button>
+		</div>
+		<br>
+		<div id="comment-list" class="comment">
+			
+			{{#each currentPost.comments}}
+				{{> comment this}}
+			{{/each}}
+
+
+			{{!-- <strong class="comment-author">anotherusername88</strong>
+			<span class="comment-date">2022, Dec 12</span>
+			<div class="comment-text">this is a sample comment</div> --}}
+		</div>
+	</div>
+
+ 
