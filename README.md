@@ -44,28 +44,28 @@ The app allows users to register, log in, post images, search posts, and comment
    git clone <your-repo-url>
    cd <your-project-folder>
   ``
-   ---
+---
 
-## ⚙️ Install Dependencies
+##  Install Dependencies
 ```bash
   npm install
 
 ```
-   ---
+---
 
-## ⚙️ Database Setup
+##  Database Setup
 - Install MySQL
 - Run the provided SQL script (schema.sql) to create required tables
 
-   ---
+---
 
-## ⚙️ Run the Application
+##  Run the Application
 ```bash
 npm start
 ```
 Then open: http://localhost:3000
 
-   ---
+---
 
 ## 📅 Project Milestones
 
