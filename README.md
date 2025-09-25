@@ -40,10 +40,10 @@ The app allows users to register, log in, post images, search posts, and comment
 ## ⚙️ Installation & Setup
 
 1. **Clone the Repository**
-   ```bash
+```bash
    git clone <your-repo-url>
    cd <your-project-folder>
-  ``
+```
 ---
 
 ##  Install Dependencies
@@ -61,7 +61,7 @@ The app allows users to register, log in, post images, search posts, and comment
 
 ##  Run the Application
 ```bash
-npm start
+  npm start
 ```
 Then open: http://localhost:3000
 
