@@ -79,4 +79,7 @@ Then open: http://localhost:3000
 
 ## 🎥 Demo
 
-[![Watch the video](https://img.youtube.com/vi/<VIDEO_ID>/0.jpg)]((https://youtu.be/EGG9YTTrwNQ)
+![App Demo](demo.gif)
+
+👉 [Watch full demo video](https://youtu.be/EGG9YTTrwNQ)
+
