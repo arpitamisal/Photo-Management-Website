@@ -74,3 +74,9 @@ Then open: http://localhost:3000
 - **Milestone 3**: Implement registration, login, logout
 - **Milestone 4**: Implement posting, searching, viewing, commenting
 - **Milestone 5**: Final demo video presentation
+
+---
+
+## 🎥 Demo
+
+![Demo Video](https://github.com/<USERNAME>/<REPO>/assets/<ASSET_ID>)
