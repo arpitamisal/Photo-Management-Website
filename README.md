@@ -79,4 +79,4 @@ Then open: http://localhost:3000
 
 ## 🎥 Demo
 
-![Demo Video](https://github.com/<USERNAME>/<REPO>/assets/<ASSET_ID>)
+[![Watch the video](https://img.youtube.com/vi/<VIDEO_ID>/0.jpg)]((https://youtu.be/EGG9YTTrwNQ)
