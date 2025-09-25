@@ -79,7 +79,5 @@ Then open: http://localhost:3000
 
 ## 🎥 Demo
 
-![App Demo](demo.gif)
-
 👉 [Watch full demo video](https://youtu.be/EGG9YTTrwNQ)
 
